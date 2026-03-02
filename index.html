@@ -1857,7 +1857,7 @@ function switchTab(tabName) {
         a.classList.toggle('active', a.getAttribute('data-tab') === tabName);
     });
     closeMobileNav();
-    document.getElementById('tabArea').scrollIntoView({ behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 function toggleTimeline(header) {
     header.closest('.timeline-item').classList.toggle('open');
