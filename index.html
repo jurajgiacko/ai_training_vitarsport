@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude AI Workshop | VITAR Sport</title>
+    <style>
+        :root {
+            --bg: #0a0a12;
+            --bg-surface: #12121e;
+            --bg-card: #181828;
+            --bg-card-hover: #1e1e32;
+            --border: rgba(255,255,255,0.07);
+            --border-hover: rgba(255,255,255,0.14);
+            --accent: #e94560;
+            --accent-soft: rgba(233, 69, 96, 0.12);
+            --green: #00d2a0;
+            --green-soft: rgba(0, 210, 160, 0.12);
+            --blue: #4ecdc4;
+            --blue-soft: rgba(78, 205, 196, 0.12);
+            --purple: #a855f7;
+            --purple-soft: rgba(168, 85, 247, 0.12);
+            --yellow: #ffc857;
+            --yellow-soft: rgba(255, 200, 87, 0.12);
+            --text: #eaeaf0;
+            --text-muted: #9a9ab0;
+            --text-dim: #5a5a70;
+            --radius: 14px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+        .wrap { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 72px 20px 56px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 5px 16px;
+            border-radius: 20px;
+            margin-bottom: 28px;
+            letter-spacing: 0.3px;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p { color: var(--text-muted); font-size: 1.05rem; max-width: 520px; margin: 0 auto 32px; }
+        .hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 12px 24px; border-radius: 10px;
+            font-weight: 600; font-size: 0.92rem;
+            text-decoration: none; transition: all 0.2s;
+        }
+        .btn-primary { background: var(--accent); color: #fff; }
+        .btn-primary:hover { background: #ff5a75; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(233,69,96,0.3); }
+        .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+        .btn-outline:hover { border-color: var(--border-hover); background: var(--bg-card); }
+
+        /* SECTION HEADERS */
+        .section-header {
+            padding: 56px 0 24px;
+        }
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* TIMELINE */
+        .timeline { display: flex; flex-direction: column; gap: 12px; }
+
+        .timeline-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+        .timeline-item:hover { border-color: var(--border-hover); }
+        .timeline-item.open { border-color: rgba(233,69,96,0.25); }
+
+        .timeline-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 24px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .timeline-header:hover { background: var(--bg-card-hover); }
+
+        .timeline-meta {
+            flex-shrink: 0;
+            text-align: right;
+            min-width: 56px;
+        }
+        .timeline-time { font-size: 0.82rem; font-weight: 600; color: var(--text-muted); }
+        .timeline-duration {
+            font-size: 0.68rem;
+            color: var(--text-dim);
+            background: rgba(255,255,255,0.04);
+            padding: 2px 8px;
+            border-radius: 6px;
+            margin-top: 4px;
+            display: inline-block;
+        }
+
+        .timeline-icon {
+            width: 42px; height: 42px;
+            border-radius: 11px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .timeline-info { flex: 1; min-width: 0; }
+        .timeline-title { font-weight: 650; font-size: 1.02rem; }
+        .timeline-subtitle { font-size: 0.84rem; color: var(--text-muted); margin-top: 2px; }
+
+        .timeline-chevron {
+            flex-shrink: 0;
+            width: 20px; height: 20px;
+            color: var(--text-dim);
+            transition: transform 0.25s;
+        }
+        .timeline-item.open .timeline-chevron { transform: rotate(180deg); }
+
+        .timeline-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+        .timeline-body-inner { padding: 0 24px 24px; }
+
+        /* TASKS INSIDE TIMELINE */
+        .task-list { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+
+        .task {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .task-header {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 18px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.15s;
+        }
+        .task-header:hover { background: rgba(255,255,255,0.02); }
+
+        .task-num {
+            width: 28px; height: 28px;
+            border-radius: 7px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.78rem; font-weight: 700;
+            flex-shrink: 0;
+        }
+        .task-label { flex: 1; font-size: 0.92rem; font-weight: 500; }
+        .task-tag {
+            font-size: 0.68rem; font-weight: 600;
+            padding: 3px 10px; border-radius: 6px;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .task-chevron {
+            width: 16px; height: 16px;
+            color: var(--text-dim);
+            transition: transform 0.2s;
+            flex-shrink: 0;
+        }
+        .task.open .task-chevron { transform: rotate(180deg); }
+
+        .task-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .task-body-inner {
+            padding: 0 18px 18px;
+            padding-left: 58px;
+        }
+        .task-body-inner p { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 10px; }
+        .task-body-inner p:last-child { margin-bottom: 0; }
+
+        .prompt-example {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+        .prompt-example strong { color: var(--green); font-style: normal; }
+
+        .tip-box {
+            background: var(--yellow-soft);
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 0.85rem;
+            color: var(--yellow);
+            margin-top: 10px;
+            display: flex;
+            gap: 8px;
+        }
+        .tip-box span { flex-shrink: 0; }
+
+        /* COMPARE */
+        .compare-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .compare-card {
+            background: var(--bg-surface);
+            border-radius: 8px;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+        }
+        .compare-card.bad { border-left: 3px solid var(--accent); }
+        .compare-card.good { border-left: 3px solid var(--green); }
+        .compare-label {
+            font-size: 0.68rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .compare-label.bad { color: var(--accent); }
+        .compare-label.good { color: var(--green); }
+        .compare-text { font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
+
+        /* RULES LIST */
+        .rules-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .rule-item {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 16px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        .rule-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+        .rule-text { font-size: 0.88rem; color: var(--text-muted); }
+        .rule-text strong { color: var(--text); }
+
+        /* STEPS */
+        .mini-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .mini-step {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .mini-step-num {
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.72rem; font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .mini-step p { font-size: 0.88rem; color: var(--text-muted); }
+        .mini-step p strong { color: var(--text); }
+
+        /* LINKS GRID */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            padding-bottom: 60px;
+        }
+        .link-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px 20px;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.2s;
+            display: block;
+        }
+        .link-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+        .link-card h4 { font-size: 0.95rem; margin-bottom: 4px; }
+        .link-card p { color: var(--text-muted); font-size: 0.82rem; }
+        .link-card .arrow { color: var(--accent); font-size: 0.82rem; margin-top: 10px; display: inline-block; }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 0;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.82rem;
+        }
+
+        /* DIVIDER */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 8px 0;
+        }
+
+        /* DO/DONT */
+        .do-dont {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .do-col, .dont-col {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px;
+        }
+        .do-col h4, .dont-col h4 {
+            font-size: 0.88rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .do-col ul, .dont-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .do-col li, .dont-col li {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            padding-left: 22px;
+            position: relative;
+        }
+        .do-col li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-size: 0.82rem;
+        }
+        .dont-col li::before {
+            content: '\2717';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 0.82rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 640px) {
+            .hero { padding: 48px 16px 40px; }
+            .timeline-header { padding: 16px; gap: 12px; }
+            .timeline-meta { min-width: 44px; }
+            .timeline-icon { width: 36px; height: 36px; font-size: 1.1rem; }
+            .timeline-body-inner { padding: 0 16px 16px; }
+            .task-body-inner { padding-left: 18px; }
+            .compare-row, .rules-list, .do-dont { grid-template-columns: 1fr; }
+            .links-grid { grid-template-columns: 1fr; }
+            .section-header { padding: 40px 0 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-badge">VITAR Sport &middot; AI Workshop 2026</div>
+    <h1>Claude AI Workshop</h1>
+    <p>Praktický sprievodca pre tím VITAR Sport. Rozklikni jednotlivé sekcie a prejdi si úlohy.</p>
+    <div class="hero-buttons">
+        <a href="https://claude.ai" target="_blank" class="btn btn-primary">Otvoriť Claude &rarr;</a>
+        <a href="https://notebooklm.google.com" target="_blank" class="btn btn-outline">Google NotebookLM</a>
+    </div>
+</header>
+
+<div class="wrap">
+
+    <!-- ===================== PROGRAM ===================== -->
+    <div class="section-header">
+        <h2>Program workshopu</h2>
+    </div>
+
+    <div class="timeline">
+
+        <!-- BLOK 1 -->
+        <div class="timeline-item">
+            <div class="timeline-header" onclick="toggleTimeline(this)">
+                <div class="timeline-meta">
+                    <div class="timeline-time">Blok 1</div>
+                    <div class="timeline-duration">30 min</div>
+                </div>
+                <div class="timeline-icon" style="background: var(--accent-soft); color: var(--accent);">&#9889;</div>
+                <div class="timeline-info">
+                    <div class="timeline-title">Základy Claude</div>
+                    <div class="timeline-subtitle">Prečo Claude, context window, prvé kroky</div>
+                </div>
+                <svg class="timeline-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="timeline-body">
+                <div class="timeline-body-inner">
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Pochopíš, prečo používame Claude (a nie free ChatGPT), ako funguje context window a urobíš si prvý prompt.</p>
+
+                    <div class="task-list">
+                        <!-- Task 1.1 -->
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--accent-soft); color: var(--accent);">1</div>
+                                <div class="task-label">Prečo Claude a nie free ChatGPT?</div>
+                                <div class="task-tag" style="background: var(--green-soft); color: var(--green);">info</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p><strong style="color: var(--text);">Claude Pro vs. free verzia:</strong></p>
+                                    <p>Free verzie (ChatGPT free, Claude free) majú výrazne menšie limity, staršie modely a kratší context window. S Pro účtom dostávaš najnovší model, dlhšie konverzácie, prioritný prístup a funkcie ako Projekty a Artefakty.</p>
+                                    <div class="tip-box"><span>&#128161;</span> Máš firemný Claude Pro účet. Používaj ho namiesto free verzií.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Task 1.2 -->
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--accent-soft); color: var(--accent);">2</div>
+                                <div class="task-label">Context window — nie je nekonečný</div>
+                                <div class="task-tag" style="background: var(--yellow-soft); color: var(--yellow);">kľúčové</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p>Claude má obmedzenú "pamäť" v rámci jednej konverzácie (~200k tokenov &#8776; ~150k slov). Čím je konverzácia dlhšia, tým horšie si pamätá čo bolo na začiatku.</p>
+                                    <div class="rules-list">
+                                        <div class="rule-item">
+                                            <div class="rule-icon">&#127919;</div>
+                                            <div class="rule-text"><strong>Nový topic = nová konverzácia.</strong> Nemiešaj témy do jedného chatu.</div>
+                                        </div>
+                                        <div class="rule-item">
+                                            <div class="rule-icon">&#9888;&#65039;</div>
+                                            <div class="rule-text"><strong>Ak Claude "zabúda"</strong> alebo odpovedá divne &rarr; začni novú konverzáciu.</div>
+                                        </div>
+                                        <div class="rule-item">
+                                            <div class="rule-icon">&#9989;</div>
+                                            <div class="rule-text"><strong>Krátke, jasné inštrukcie</strong> sú lepšie než dlhé rozvláčne popisy.</div>
+                                        </div>
+                                        <div class="rule-item">
+                                            <div class="rule-icon">&#128193;</div>
+                                            <div class="rule-text"><strong>Používaj Projekty</strong> na trvalý kontext naprieč konverzáciami.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Task 1.3 -->
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--accent-soft); color: var(--accent);">3</div>
+                                <div class="task-label">Hands-on: Tvoj prvý prompt</div>
+                                <div class="task-tag" style="background: var(--purple-soft); color: var(--purple);">cvičenie</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p>Otvor <a href="https://claude.ai" target="_blank" style="color: var(--accent);">claude.ai</a>, prihlás sa a napíš prvý prompt. Popíš svoju rolu a požiadaj o pomoc s konkrétnou úlohou.</p>
+                                    <div class="prompt-example">
+                                        <strong>Príklad:</strong> "Som obchodník pre značku Enervit v ČR. Pomôž mi napísať email novému potenciálnemu B2B partnerovi — fitness centru v Brne. Tón profesionálny, max 150 slov."
+                                    </div>
+                                    <div class="tip-box"><span>&#128161;</span> Všimni si — čím konkrétnejší prompt, tým lepšia odpoveď.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOK 2 -->
+        <div class="timeline-item">
+            <div class="timeline-header" onclick="toggleTimeline(this)">
+                <div class="timeline-meta">
+                    <div class="timeline-time">Blok 2</div>
+                    <div class="timeline-duration">60 min</div>
+                </div>
+                <div class="timeline-icon" style="background: var(--green-soft); color: var(--green);">&#128736;</div>
+                <div class="timeline-info">
+                    <div class="timeline-title">Praktické use cases</div>
+                    <div class="timeline-subtitle">Dokumenty, projekty, artefakty, emaily — hands-on</div>
+                </div>
+                <svg class="timeline-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="timeline-body">
+                <div class="timeline-body-inner">
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Hlavný blok workshopu. Vyskúšaš si 4 praktické use cases, ktoré budeš používať každý deň.</p>
+
+                    <div class="task-list">
+                        <!-- 2A -->
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--green-soft); color: var(--green);">A</div>
+                                <div class="task-label">Práca s dokumentami</div>
+                                <div class="task-tag" style="background: var(--purple-soft); color: var(--purple);">cvičenie</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p>Nahraj PDF, CSV alebo textový dokument do Claude a nechaj ho analyzovať.</p>
+                                    <p><strong style="color: var(--text);">Úloha:</strong> Nahraj svoj pracovný dokument a požiadaj Claude o:</p>
+                                    <div class="mini-steps">
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--green-soft); color: var(--green);">1</div>
+                                            <p>Sumarizáciu v 5 bodoch</p>
+                                        </div>
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--green-soft); color: var(--green);">2</div>
+                                            <p>Identifikáciu kľúčových čísel alebo rozhodnutí</p>
+                                        </div>
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--green-soft); color: var(--green);">3</div>
+                                            <p>Návrh ďalších krokov</p>
+                                        </div>
+                                    </div>
+                                    <div class="prompt-example">
+                                        <strong>Prompt:</strong> "Nahral som PDF s mesačným reportom. Zhrň ho v 5 bodoch, vytiahni kľúčové čísla a navrhni 3 akčné kroky."
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2B -->
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--green-soft); color: var(--green);">B</div>
+                                <div class="task-label">Vytvorenie projektu v Claude</div>
+                                <div class="task-tag" style="background: var(--purple-soft); color: var(--purple);">cvičenie</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p>Projekty sú najsilnejšia funkcia Claude. Nastav si trvalý kontext, ktorý bude platiť v každej novej konverzácii.</p>
+                                    <div class="mini-steps">
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--green-soft); color: var(--green);">1</div>
+                                            <p><strong>Klikni "Projects"</strong> v ľavom sidebar a potom "New Project"</p>
+                                        </div>
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--green-soft); color: var(--green);">2</div>
+                                            <p><strong>Nastav Custom Instructions</strong> — povedz kto si, aký tón chceš, čo riešiš</p>
+                                        </div>
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--green-soft); color: var(--green);">3</div>
+                                            <p><strong>Nahraj Knowledge</strong> — cenníky, brand guide, produktové listy</p>
+                                        </div>
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--green-soft); color: var(--green);">4</div>
+                                            <p><strong>Začni chat</strong> — nový chat v projekte automaticky pozná tvoj kontext</p>
+                                        </div>
+                                    </div>
+                                    <p><strong style="color: var(--text);">Úloha:</strong> Vytvor projekt pre svoju rolu:</p>
+                                    <div class="rules-list">
+                                        <div class="rule-item">
+                                            <div class="rule-icon">&#128200;</div>
+                                            <div class="rule-text"><strong>Sales:</strong> "Enervit B2B Sales" — inštrukcie pre obchodné emaily + cenník</div>
+                                        </div>
+                                        <div class="rule-item">
+                                            <div class="rule-icon">&#127912;</div>
+                                            <div class="rule-text"><strong>Marketing:</strong> "Enervit Content" — brand voice, cieľovka, kanály</div>
+                                        </div>
+                                        <div class="rule-item">
+                                            <div class="rule-icon">&#128221;</div>
+                                            <div class="rule-text"><strong>Operations:</strong> "VITAR Events" — event checklisty, follow-up šablóny</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2C -->
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--green-soft); color: var(--green);">C</div>
+                                <div class="task-label">Generátor artefaktov</div>
+                                <div class="task-tag" style="background: var(--purple-soft); color: var(--purple);">cvičenie</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p>Artefakty sú interaktívne výstupy — tabuľky, dokumenty, kód, vizualizácie — ktoré Claude generuje priamo v konverzácii.</p>
+                                    <p><strong style="color: var(--text);">Čo Claude vie vygenerovať:</strong></p>
+                                    <div class="rules-list">
+                                        <div class="rule-item">
+                                            <div class="rule-icon">&#128202;</div>
+                                            <div class="rule-text"><strong>Tabuľky</strong> — porovnanie produktov, cenníky, reporty</div>
+                                        </div>
+                                        <div class="rule-item">
+                                            <div class="rule-icon">&#128196;</div>
+                                            <div class="rule-text"><strong>Dokumenty</strong> — emaily, SOP, checklisty, prezentácie</div>
+                                        </div>
+                                        <div class="rule-item">
+                                            <div class="rule-icon">&#128187;</div>
+                                            <div class="rule-text"><strong>Kód</strong> — skripty, HTML stránky, kalkulačky</div>
+                                        </div>
+                                        <div class="rule-item">
+                                            <div class="rule-icon">&#128200;</div>
+                                            <div class="rule-text"><strong>Vizualizácie</strong> — grafy, diagramy, infografiky</div>
+                                        </div>
+                                    </div>
+                                    <p style="margin-top: 12px;"><strong style="color: var(--text);">Úloha:</strong> Požiadaj Claude o artefakt pre tvoju prácu.</p>
+                                    <div class="prompt-example">
+                                        <strong>Príklad:</strong> "Vytvor porovnávaciu tabuľku Enervit Isotonic vs Isostar vs SiS — cena, zloženie, výhody, dostupnosť v CZ. Ako artefakt."
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2D -->
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--green-soft); color: var(--green);">D</div>
+                                <div class="task-label">Email drafting a komunikácia</div>
+                                <div class="task-tag" style="background: var(--purple-soft); color: var(--purple);">cvičenie</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p><strong style="color: var(--text);">Úloha:</strong> Napíš prompt pre email, ktorý naozaj potrebuješ odoslať tento týždeň. Potom iteruj — požiadaj Claude o úpravy.</p>
+                                    <div class="prompt-example">
+                                        <strong>1. prompt:</strong> "Napíš follow-up email po schôdzke s fitness centrom FitPark Brno. Dohodli sme sa na skúšobnej dodávke 20ks Enervit Isotonic. Tón priateľský, profesionálny. Max 100 slov."
+                                    </div>
+                                    <div class="prompt-example">
+                                        <strong>2. iterácia:</strong> "Skráť to na 60 slov a pridaj CTA s dátumom dodania."
+                                    </div>
+                                    <div class="prompt-example">
+                                        <strong>3. iterácia:</strong> "Zmeň tón na formálnejší, tykanie zmeň na vykanie."
+                                    </div>
+                                    <div class="tip-box"><span>&#128161;</span> Iterovanie je kľúč. Prvý draft uprav 2-3x cez ďalšie prompty.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOK 3 -->
+        <div class="timeline-item">
+            <div class="timeline-header" onclick="toggleTimeline(this)">
+                <div class="timeline-meta">
+                    <div class="timeline-time">Blok 3</div>
+                    <div class="timeline-duration">30 min</div>
+                </div>
+                <div class="timeline-icon" style="background: var(--blue-soft); color: var(--blue);">&#128640;</div>
+                <div class="timeline-info">
+                    <div class="timeline-title">Pokročilé techniky</div>
+                    <div class="timeline-subtitle">Research, znalostná báza, NotebookLM, prompting</div>
+                </div>
+                <svg class="timeline-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="timeline-body">
+                <div class="timeline-body-inner">
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Nauč sa robiť hĺbkový research, pracovať so znalostnou bázou a vytvoriť podcast z dokumentov.</p>
+
+                    <div class="task-list">
+                        <!-- 3A -->
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--blue-soft); color: var(--blue);">A</div>
+                                <div class="task-label">Research a analýza</div>
+                                <div class="task-tag" style="background: var(--purple-soft); color: var(--purple);">cvičenie</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p>Claude nemá prístup na internet, ale vie analyzovať dáta, ktoré mu dáš. Pre aktuálne info použi Perplexity a výsledky daj Claude na spracovanie.</p>
+                                    <p><strong style="color: var(--text);">Vyskúšaj:</strong></p>
+                                    <div class="prompt-example">
+                                        <strong>Prompt:</strong> "Analyzuj český trh so športovou výživou — odhadni veľkosť, hlavných hráčov, trendy pre 2026. Porovnaj pozíciu Enervit s Nutrend, SiS, Isostar. Výstup ako tabuľka + 3 strategické odporúčania."
+                                    </div>
+                                    <div class="prompt-example">
+                                        <strong>S dátami:</strong> Nahraj CSV s mesačnými predajmi &rarr; "Identifikuj top 10 produktov, mesiac-nad-mesiac trend a produkty s klesajúcim trendom."
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3B -->
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--blue-soft); color: var(--blue);">B</div>
+                                <div class="task-label">Prompting — zlý vs. dobrý prompt</div>
+                                <div class="task-tag" style="background: var(--yellow-soft); color: var(--yellow);">kľúčové</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p>Kvalita promptu = kvalita výstupu. Pozri si rozdiel:</p>
+                                    <div class="compare-row">
+                                        <div class="compare-card bad">
+                                            <div class="compare-label bad">Zlý prompt</div>
+                                            <div class="compare-text">"Napíš email"</div>
+                                        </div>
+                                        <div class="compare-card good">
+                                            <div class="compare-label good">Dobrý prompt</div>
+                                            <div class="compare-text">"Napíš B2B email pre fitness centrum v Brne. Enervit športová výživa. Tón profesionálny. Max 150 slov. CTA na stretnutie."</div>
+                                        </div>
+                                    </div>
+                                    <div class="compare-row">
+                                        <div class="compare-card bad">
+                                            <div class="compare-label bad">Zlý prompt</div>
+                                            <div class="compare-text">"Analyzuj dáta"</div>
+                                        </div>
+                                        <div class="compare-card good">
+                                            <div class="compare-label good">Dobrý prompt</div>
+                                            <div class="compare-text">"Nahral som CSV s predajmi. Top 5 produktov podľa obratu, M/M trend, klesajúce produkty. Výstup ako tabuľka."</div>
+                                        </div>
+                                    </div>
+                                    <div class="compare-row">
+                                        <div class="compare-card bad">
+                                            <div class="compare-label bad">Zlý prompt</div>
+                                            <div class="compare-text">"Pomôž mi s prezentáciou"</div>
+                                        </div>
+                                        <div class="compare-card good">
+                                            <div class="compare-label good">Dobrý prompt</div>
+                                            <div class="compare-text">"Osnova 10-slide prezentácie pre Intersport: prečo Enervit. Slide 1=hook, 2-3=trh, 4-6=produkty, 7-8=marže, 9=podpora, 10=CTA."</div>
+                                        </div>
+                                    </div>
+
+                                    <p style="margin-top: 16px;"><strong style="color: var(--text);">5 zlatých pravidiel:</strong></p>
+                                    <div class="rules-list">
+                                        <div class="rule-item">
+                                            <div class="rule-icon">1&#65039;&#8419;</div>
+                                            <div class="rule-text"><strong>Buď konkrétny</strong> — kontext, formát, tón, dĺžka</div>
+                                        </div>
+                                        <div class="rule-item">
+                                            <div class="rule-icon">2&#65039;&#8419;</div>
+                                            <div class="rule-text"><strong>Definuj formát</strong> — tabuľka, zoznam, email, slide</div>
+                                        </div>
+                                        <div class="rule-item">
+                                            <div class="rule-icon">3&#65039;&#8419;</div>
+                                            <div class="rule-text"><strong>Daj príklad</strong> — "Podobne ako tento email: ..."</div>
+                                        </div>
+                                        <div class="rule-item">
+                                            <div class="rule-icon">4&#65039;&#8419;</div>
+                                            <div class="rule-text"><strong>Iteruj</strong> — "Skráť to", "Pridaj dáta", "Formálnejšie"</div>
+                                        </div>
+                                        <div class="rule-item" style="grid-column: 1 / -1;">
+                                            <div class="rule-icon">5&#65039;&#8419;</div>
+                                            <div class="rule-text"><strong>Nový topic = nová konverzácia</strong> — šetri context window</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3C -->
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--blue-soft); color: var(--blue);">C</div>
+                                <div class="task-label">Google NotebookLM — podcast z dokumentov</div>
+                                <div class="task-tag" style="background: var(--green-soft); color: var(--green);">bonus</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p>NotebookLM od Google analyzuje tvoje dokumenty a vytvorí z nich AI podcast — dvaja "moderátori" diskutujú o obsahu. Ideálne na onboarding, review stratégie, alebo zdieľanie s tímom.</p>
+                                    <div class="mini-steps">
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--blue-soft); color: var(--blue);">1</div>
+                                            <p>Choď na <a href="https://notebooklm.google.com" target="_blank" style="color: var(--blue);">notebooklm.google.com</a> a prihlás sa</p>
+                                        </div>
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--blue-soft); color: var(--blue);">2</div>
+                                            <p><strong>Nahraj dokumenty</strong> — PDF, Google Docs, webové stránky, YouTube videá</p>
+                                        </div>
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--blue-soft); color: var(--blue);">3</div>
+                                            <p>Klikni <strong>"Audio Overview"</strong> &rarr; NotebookLM vygeneruje podcast</p>
+                                        </div>
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--blue-soft); color: var(--blue);">4</div>
+                                            <p><strong>Stiahni alebo zdieľaj</strong> — ideálne pre onboarding nových ľudí v tíme</p>
+                                        </div>
+                                    </div>
+                                    <div class="tip-box"><span>&#128161;</span> Vyskúšaj: nahraj firemnú stratégiu a vypočuj si, ako ju AI zhrnú v 10-minútovom podcaste.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOK 4 -->
+        <div class="timeline-item">
+            <div class="timeline-header" onclick="toggleTimeline(this)">
+                <div class="timeline-meta">
+                    <div class="timeline-time">Blok 4</div>
+                    <div class="timeline-duration">15 min</div>
+                </div>
+                <div class="timeline-icon" style="background: var(--purple-soft); color: var(--purple);">&#128101;</div>
+                <div class="timeline-info">
+                    <div class="timeline-title">Náš workflow a pravidlá</div>
+                    <div class="timeline-subtitle">Zdieľanie tipov, guardrails, ďalšie kroky</div>
+                </div>
+                <svg class="timeline-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="timeline-body">
+                <div class="timeline-body-inner">
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Ako zdieľame AI tipy v tíme a čo robiť / nerobiť.</p>
+
+                    <div class="task-list">
+                        <!-- 4A -->
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--purple-soft); color: var(--purple);">A</div>
+                                <div class="task-label">Zdieľanie v tíme — #AI-Tips v Teams</div>
+                                <div class="task-tag" style="background: var(--green-soft); color: var(--green);">info</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p>Máme kanál <strong style="color: var(--text);">#AI-Tips v Microsoft Teams</strong>. Sem zdieľame:</p>
+                                    <div class="rules-list">
+                                        <div class="rule-item">
+                                            <div class="rule-icon">&#128161;</div>
+                                            <div class="rule-text">Prompty, ktoré fungujú dobre</div>
+                                        </div>
+                                        <div class="rule-item">
+                                            <div class="rule-icon">&#128295;</div>
+                                            <div class="rule-text">Workflow tipy a skratky</div>
+                                        </div>
+                                        <div class="rule-item">
+                                            <div class="rule-icon">&#128200;</div>
+                                            <div class="rule-text">Successful use cases</div>
+                                        </div>
+                                        <div class="rule-item">
+                                            <div class="rule-icon">&#10067;</div>
+                                            <div class="rule-text">Otázky a žiadosti o pomoc</div>
+                                        </div>
+                                    </div>
+                                    <p style="margin-top: 12px;"><strong style="color: var(--text);">Weekly AI Win:</strong> Na každej porade zdieľame 1 príklad, kde AI ušetrilo čas.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4B -->
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--purple-soft); color: var(--purple);">B</div>
+                                <div class="task-label">Guardrails — čo áno, čo nie</div>
+                                <div class="task-tag" style="background: var(--yellow-soft); color: var(--yellow);">kľúčové</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <div class="do-dont">
+                                        <div class="do-col">
+                                            <h4><span style="color: var(--green);">&#10003;</span> Toto rob</h4>
+                                            <ul>
+                                                <li>AI ako prvý draft, vždy prejdi a uprav</li>
+                                                <li>Kontroluj fakty a čísla pred odoslaním</li>
+                                                <li>Zachovaj brand voice pri úpravách</li>
+                                                <li>Zdieľaj prompty v #AI-Tips</li>
+                                                <li>Experimentuj s novými use cases</li>
+                                                <li>Nový topic = nová konverzácia</li>
+                                            </ul>
+                                        </div>
+                                        <div class="dont-col">
+                                            <h4><span style="color: var(--accent);">&#10007;</span> Toto nerob</h4>
+                                            <ul>
+                                                <li>Publikovať AI output bez kontroly</li>
+                                                <li>Zdieľať dôverné dáta (zmluvy, platy)</li>
+                                                <li>Spoliehať sa na AI pri rozhodnutiach</li>
+                                                <li>Ignorovať bezpečnostné pravidlá</li>
+                                                <li>Nechávať si tipy pre seba</li>
+                                                <li>Jednu konverzáciu na všetko</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4C -->
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--purple-soft); color: var(--purple);">C</div>
+                                <div class="task-label">Ďalšie kroky po workshope</div>
+                                <div class="task-tag" style="background: var(--accent-soft); color: var(--accent);">akcia</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p><strong style="color: var(--text);">Tento týždeň:</strong></p>
+                                    <div class="mini-steps">
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--accent-soft); color: var(--accent);">&#10003;</div>
+                                            <p>Vytvor si min. 1 Claude projekt pre svoju rolu</p>
+                                        </div>
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--accent-soft); color: var(--accent);">&#10003;</div>
+                                            <p>Pošli min. 1 tip do #AI-Tips v Teams</p>
+                                        </div>
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--accent-soft); color: var(--accent);">&#10003;</div>
+                                            <p>Ulož si túto stránku ako záložku v browseri</p>
+                                        </div>
+                                    </div>
+                                    <p style="margin-top: 16px;"><strong style="color: var(--text);">Nasledujúce týždne:</strong></p>
+                                    <div class="mini-steps">
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--accent-soft); color: var(--accent);">&#8594;</div>
+                                            <p>Používaj Claude denne (min. 3x/deň)</p>
+                                        </div>
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--accent-soft); color: var(--accent);">&#8594;</div>
+                                            <p>Zdieľaj AI Win na weekly porade</p>
+                                        </div>
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--accent-soft); color: var(--accent);">&#8594;</div>
+                                            <p>Ak niečo nefunguje &rarr; opýtaj sa Juraja alebo v #AI-Tips</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /timeline -->
+
+    <!-- ===================== USE CASES BY ROLE ===================== -->
+    <div class="section-header">
+        <h2>Use Cases podľa role</h2>
+    </div>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-header" onclick="toggleTimeline(this)">
+                <div class="timeline-meta"><div class="timeline-duration">Sales</div></div>
+                <div class="timeline-icon" style="background: var(--green-soft); color: var(--green);">&#128200;</div>
+                <div class="timeline-info">
+                    <div class="timeline-title">Sales &amp; Obchod</div>
+                    <div class="timeline-subtitle">Karolína, Jiří, Štěpán</div>
+                </div>
+                <svg class="timeline-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="timeline-body">
+                <div class="timeline-body-inner">
+                    <div class="rules-list">
+                        <div class="rule-item"><div class="rule-icon">&#9993;</div><div class="rule-text"><strong>B2B prospecting emaily</strong> na mieru pre každého partnera</div></div>
+                        <div class="rule-item"><div class="rule-icon">&#128172;</div><div class="rule-text"><strong>Follow-up po schôdzke</strong> — za 2 minúty hotový</div></div>
+                        <div class="rule-item"><div class="rule-icon">&#128218;</div><div class="rule-text"><strong>Príprava na meeting</strong> — research partnera, otázky, stratégia</div></div>
+                        <div class="rule-item"><div class="rule-icon">&#128269;</div><div class="rule-text"><strong>Analýza konkurencie</strong> — porovnanie cien, produktov, trhu</div></div>
+                        <div class="rule-item"><div class="rule-icon">&#128202;</div><div class="rule-text"><strong>Ponuky a prezentácie</strong> pre retailerov a partnerov</div></div>
+                        <div class="rule-item"><div class="rule-icon">&#128221;</div><div class="rule-text"><strong>CRM poznámky</strong> zo stretnutí — rýchla sumarizácia</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-header" onclick="toggleTimeline(this)">
+                <div class="timeline-meta"><div class="timeline-duration">Mktg</div></div>
+                <div class="timeline-icon" style="background: var(--purple-soft); color: var(--purple);">&#127912;</div>
+                <div class="timeline-info">
+                    <div class="timeline-title">Marketing &amp; Content</div>
+                    <div class="timeline-subtitle">Adéla</div>
+                </div>
+                <svg class="timeline-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="timeline-body">
+                <div class="timeline-body-inner">
+                    <div class="rules-list">
+                        <div class="rule-item"><div class="rule-icon">&#128241;</div><div class="rule-text"><strong>Social media posty</strong> — Instagram, Facebook, LinkedIn</div></div>
+                        <div class="rule-item"><div class="rule-icon">&#128221;</div><div class="rule-text"><strong>Blogovky a články</strong> pre web — SEO optimalizované</div></div>
+                        <div class="rule-item"><div class="rule-icon">&#127919;</div><div class="rule-text"><strong>PPC ad copy</strong> — variácie pre A/B testovanie</div></div>
+                        <div class="rule-item"><div class="rule-icon">&#128722;</div><div class="rule-text"><strong>Produktové popisky</strong> pre e-shop</div></div>
+                        <div class="rule-item"><div class="rule-icon">&#128200;</div><div class="rule-text"><strong>Analýza dát</strong> z kampání a reportov</div></div>
+                        <div class="rule-item"><div class="rule-icon">&#128202;</div><div class="rule-text"><strong>Prezentácie</strong> pre Enervit HQ a partnerov</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-header" onclick="toggleTimeline(this)">
+                <div class="timeline-meta"><div class="timeline-duration">Ops</div></div>
+                <div class="timeline-icon" style="background: var(--blue-soft); color: var(--blue);">&#128221;</div>
+                <div class="timeline-info">
+                    <div class="timeline-title">Operations &amp; Eventy</div>
+                    <div class="timeline-subtitle">Veronika</div>
+                </div>
+                <svg class="timeline-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="timeline-body">
+                <div class="timeline-body-inner">
+                    <div class="rules-list">
+                        <div class="rule-item"><div class="rule-icon">&#128197;</div><div class="rule-text"><strong>Event plánovacie dokumenty</strong> — checklisty, harmonogramy</div></div>
+                        <div class="rule-item"><div class="rule-icon">&#9993;</div><div class="rule-text"><strong>Follow-up emaily</strong> po eventoch a schôdzkach</div></div>
+                        <div class="rule-item"><div class="rule-icon">&#128203;</div><div class="rule-text"><strong>Procesné dokumentácie</strong> a SOP</div></div>
+                        <div class="rule-item"><div class="rule-icon">&#9989;</div><div class="rule-text"><strong>Checklisty</strong> pre expo stánky a materiál</div></div>
+                        <div class="rule-item"><div class="rule-icon">&#128172;</div><div class="rule-text"><strong>Zákaznícka komunikácia</strong> — odpovede, FAQ</div></div>
+                        <div class="rule-item"><div class="rule-icon">&#128221;</div><div class="rule-text"><strong>Meeting sumáre</strong> a zápisy z porád</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== LINKS ===================== -->
+    <div class="section-header">
+        <h2>Odkazy a zdroje</h2>
+    </div>
+
+    <div class="links-grid">
+        <a href="https://claude.ai" target="_blank" class="link-card">
+            <h4>Claude AI</h4>
+            <p>Prihlás sa a začni. Pro účet = plný výkon.</p>
+            <span class="arrow">claude.ai &rarr;</span>
+        </a>
+        <a href="https://notebooklm.google.com" target="_blank" class="link-card">
+            <h4>Google NotebookLM</h4>
+            <p>Podcast z dokumentov, analýza, onboarding.</p>
+            <span class="arrow">notebooklm.google.com &rarr;</span>
+        </a>
+        <a href="https://www.perplexity.ai" target="_blank" class="link-card">
+            <h4>Perplexity AI</h4>
+            <p>Aktuálne info z internetu so zdrojmi.</p>
+            <span class="arrow">perplexity.ai &rarr;</span>
+        </a>
+    </div>
+
+</div><!-- /wrap -->
+
+<footer>
+    <div class="wrap">
+        <p>VITAR Sport &middot; AI Workshop 2026 &middot; Otázky? Napíš Jurajovi alebo do #AI-Tips v Teams.</p>
+    </div>
+</footer>
+
+<script>
+function toggleTimeline(header) {
+    const item = header.closest('.timeline-item');
+    const body = item.querySelector('.timeline-body');
+    const isOpen = item.classList.contains('open');
+
+    if (isOpen) {
+        body.style.maxHeight = '0';
+        item.classList.remove('open');
+    } else {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        item.classList.add('open');
+    }
+}
+
+function toggleTask(header) {
+    const task = header.closest('.task');
+    const body = task.querySelector('.task-body');
+    const isOpen = task.classList.contains('open');
+    const timelineBody = task.closest('.timeline-body');
+
+    if (isOpen) {
+        body.style.maxHeight = '0';
+        task.classList.remove('open');
+    } else {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        task.classList.add('open');
+    }
+
+    setTimeout(() => {
+        if (timelineBody) {
+            timelineBody.style.maxHeight = timelineBody.scrollHeight + 'px';
+        }
+    }, 50);
+}
+</script>
+
+</body>
+</html>
