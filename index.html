@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claude AI Workshop | VITAR Sport</title>
+    <title>VITAR Sport AI Training | JURAJ.DIGITAL</title>
     <style>
         :root {
             --bg: #fafbfc;
@@ -82,6 +82,10 @@
             color: var(--text);
             background: var(--bg-surface);
         }
+        .nav-links a.active {
+            color: var(--accent);
+            background: var(--accent-soft);
+        }
         .nav-hamburger {
             display: none;
             background: none;
@@ -116,6 +120,12 @@
             transition: all 0.15s;
         }
         .nav-mobile a:hover { color: var(--text); background: var(--bg-surface); }
+        .nav-mobile a.active { color: var(--accent); background: var(--accent-soft); }
+
+        /* TAB CONTENT */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-content .section-header:first-child { padding-top: 32px; }
 
         /* HERO */
         .hero {
@@ -658,45 +668,46 @@
 <!-- NAV -->
 <nav class="top-nav">
     <div class="nav-inner">
-        <a href="#" class="nav-brand">VITAR <span>AI</span></a>
+        <a href="https://juraj.digital" target="_blank" class="nav-brand">JURAJ<span>.</span>DIGITAL</a>
         <div class="nav-links">
-            <a href="#setup">Setup</a>
-            <a href="#practice">Praktická časť</a>
-            <a href="#inspirace">Inspirácie</a>
-            <a href="#cheatsheet">Cheatsheet</a>
-            <a href="#usecases">Use Cases</a>
-            <a href="#bonus">Bonus</a>
+            <a href="#" data-tab="setup" onclick="switchTab('setup'); return false;">Setup</a>
+            <a href="#" data-tab="practice" onclick="switchTab('practice'); return false;">Praktická časť</a>
+            <a href="#" data-tab="inspirace" onclick="switchTab('inspirace'); return false;">Inspirácie</a>
+            <a href="#" data-tab="cheatsheet" onclick="switchTab('cheatsheet'); return false;">Cheatsheet</a>
+            <a href="#" data-tab="usecases" onclick="switchTab('usecases'); return false;">Use Cases</a>
+            <a href="#" data-tab="bonus" onclick="switchTab('bonus'); return false;">Bonus</a>
         </div>
         <button class="nav-hamburger" onclick="toggleMobileNav()" aria-label="Menu">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
     </div>
     <div class="nav-mobile" id="mobileNav">
-        <a href="#setup" onclick="closeMobileNav()">Setup</a>
-        <a href="#practice" onclick="closeMobileNav()">Praktická časť</a>
-        <a href="#inspirace" onclick="closeMobileNav()">Inspirácie</a>
-        <a href="#cheatsheet" onclick="closeMobileNav()">Cheatsheet</a>
-        <a href="#usecases" onclick="closeMobileNav()">Use Cases</a>
-        <a href="#bonus" onclick="closeMobileNav()">Bonus</a>
+        <a href="#" data-tab="setup" onclick="switchTab('setup'); return false;">Setup</a>
+        <a href="#" data-tab="practice" onclick="switchTab('practice'); return false;">Praktická časť</a>
+        <a href="#" data-tab="inspirace" onclick="switchTab('inspirace'); return false;">Inspirácie</a>
+        <a href="#" data-tab="cheatsheet" onclick="switchTab('cheatsheet'); return false;">Cheatsheet</a>
+        <a href="#" data-tab="usecases" onclick="switchTab('usecases'); return false;">Use Cases</a>
+        <a href="#" data-tab="bonus" onclick="switchTab('bonus'); return false;">Bonus</a>
     </div>
 </nav>
 
 <!-- HERO -->
 <header class="hero">
-    <div class="hero-badge">VITAR Sport &middot; AI Workshop 2026</div>
-    <span class="hero-date">Marec 2026</span>
-    <h1>Claude AI Workshop</h1>
-    <p>Praktický sprievodca pre tím VITAR Sport. Rozklikni jednotlivé sekcie a prejdi si úlohy.</p>
+    <div class="hero-badge">VITAR Sport &times; AI Training</div>
+    <h1>AI Training Session</h1>
+    <a href="https://juraj.digital" target="_blank" style="display: inline-block; font-size: 0.82rem; color: var(--text-dim); text-decoration: none; margin-bottom: 20px; letter-spacing: 0.5px;">by <strong style="color: var(--text-muted);">JURAJ.DIGITAL</strong></a>
+    <p>Praktický sprievodca pre tím VITAR Sport. Klikni na záložku hore a prejdi si jednotlivé sekcie.</p>
     <div class="hero-buttons">
         <a href="https://claude.ai" target="_blank" class="btn btn-primary">Otvoriť Claude &rarr;</a>
         <a href="https://notebooklm.google.com" target="_blank" class="btn btn-outline">Google NotebookLM</a>
     </div>
 </header>
 
-<div class="wrap">
+<div class="wrap" id="tabArea">
 
     <!-- ===================== 1. SETUP ===================== -->
-    <div class="section-header" id="setup">
+    <div class="tab-content" data-tab="setup">
+    <div class="section-header">
         <h2>Setup</h2>
     </div>
 
@@ -834,8 +845,11 @@
         </div>
     </div>
 
+    </div><!-- /tab-content setup -->
+
     <!-- ===================== 2. PRAKTICKÁ ČASŤ ===================== -->
-    <div class="section-header" id="practice">
+    <div class="tab-content" data-tab="practice">
+    <div class="section-header">
         <h2>Praktická časť</h2>
     </div>
 
@@ -1046,8 +1060,11 @@
         </div>
     </div>
 
+    </div><!-- /tab-content practice -->
+
     <!-- ===================== 3. INSPIRÁCIE ===================== -->
-    <div class="section-header" id="inspirace">
+    <div class="tab-content" data-tab="inspirace">
+    <div class="section-header">
         <h2>Inspirácie</h2>
     </div>
 
@@ -1321,8 +1338,11 @@
         </div>
     </div>
 
+    </div><!-- /tab-content inspirace -->
+
     <!-- ===================== 4. CHEATSHEET ===================== -->
-    <div class="section-header" id="cheatsheet">
+    <div class="tab-content" data-tab="cheatsheet">
+    <div class="section-header">
         <h2>Cheatsheet</h2>
     </div>
 
@@ -1488,8 +1508,11 @@
         </div>
     </div>
 
+    </div><!-- /tab-content cheatsheet -->
+
     <!-- ===================== 5. USE CASES ===================== -->
-    <div class="section-header" id="usecases">
+    <div class="tab-content" data-tab="usecases">
+    <div class="section-header">
         <h2>Use Cases podľa role</h2>
     </div>
 
@@ -1604,8 +1627,11 @@
         </div>
     </div>
 
+    </div><!-- /tab-content usecases -->
+
     <!-- ===================== 6. BONUS ===================== -->
-    <div class="section-header" id="bonus">
+    <div class="tab-content" data-tab="bonus">
+    <div class="section-header">
         <h2>Bonus — Google NotebookLM</h2>
     </div>
 
@@ -1810,15 +1836,29 @@
         </a>
     </div>
 
+    </div><!-- /tab-content bonus -->
+
 </div><!-- /wrap -->
 
 <footer>
     <div class="wrap">
-        <p>VITAR Sport &middot; AI Workshop 2026 &middot; Otázky? Napíš Jurajovi alebo do #AI-Tips v Teams.</p>
+        <p>VITAR Sport AI Training 2026 &middot; by <a href="https://juraj.digital" target="_blank" style="color: var(--text-muted); text-decoration: none; font-weight: 600;">JURAJ.DIGITAL</a> &middot; Otázky? Napíš Jurajovi alebo do #AI-Tips v Teams.</p>
     </div>
 </footer>
 
 <script>
+function switchTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach(function(tc) {
+        tc.classList.remove('active');
+    });
+    var target = document.querySelector('.tab-content[data-tab="' + tabName + '"]');
+    if (target) target.classList.add('active');
+    document.querySelectorAll('.nav-links a, .nav-mobile a').forEach(function(a) {
+        a.classList.toggle('active', a.getAttribute('data-tab') === tabName);
+    });
+    closeMobileNav();
+    document.getElementById('tabArea').scrollIntoView({ behavior: 'smooth' });
+}
 function toggleTimeline(header) {
     header.closest('.timeline-item').classList.toggle('open');
 }
@@ -1854,6 +1894,9 @@ function toggleMobileNav() {
 function closeMobileNav() {
     document.getElementById('mobileNav').classList.remove('open');
 }
+document.addEventListener('DOMContentLoaded', function() {
+    switchTab('setup');
+});
 </script>
 
 </body>
