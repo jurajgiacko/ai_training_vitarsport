@@ -217,6 +217,76 @@
         }
         .prompt-example strong { color: var(--green); font-style: normal; }
 
+        /* BILINGUAL PROMPTS */
+        .prompt-bi {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .prompt-bi-bar {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.02);
+            border-bottom: 1px solid var(--border);
+        }
+        .prompt-bi-bar .lang-tab {
+            background: none;
+            border: 1px solid transparent;
+            color: var(--text-dim);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s;
+            letter-spacing: 0.5px;
+        }
+        .prompt-bi-bar .lang-tab.active {
+            background: var(--accent-soft);
+            color: var(--accent);
+            border-color: rgba(233,69,96,0.2);
+        }
+        .prompt-bi-bar .lang-tab:not(.active):hover {
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.04);
+        }
+        .copy-btn {
+            margin-left: auto;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 3px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .copy-btn:hover { background: rgba(255,255,255,0.08); color: var(--text-muted); }
+        .copy-btn.copied { background: var(--green-soft); color: var(--green); border-color: rgba(0,210,160,0.2); }
+        .prompt-bi-content {
+            padding: 14px 16px;
+        }
+        .prompt-bi-text {
+            display: none;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+        .prompt-bi-text.active { display: block; }
+        .prompt-bi-text .prompt-label-inline {
+            color: var(--green);
+            font-weight: 600;
+            font-style: normal;
+        }
+
         .tip-box {
             background: var(--yellow-soft);
             border-radius: 8px;
@@ -497,8 +567,16 @@
                             <div class="task-body">
                                 <div class="task-body-inner">
                                     <p>Otvor <a href="https://claude.ai" target="_blank" style="color: var(--accent);">claude.ai</a>, prihlás sa a napíš prvý prompt. Popíš svoju rolu a požiadaj o pomoc s konkrétnou úlohou.</p>
-                                    <div class="prompt-example">
-                                        <strong>Príklad:</strong> "Som obchodník pre značku Enervit v ČR. Pomôž mi napísať email novému potenciálnemu B2B partnerovi — fitness centru v Brne. Tón profesionálny, max 150 slov."
+                                    <div class="prompt-bi">
+                                        <div class="prompt-bi-bar">
+                                            <button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button>
+                                            <button class="lang-tab" onclick="switchLang(this,'en')">EN</button>
+                                            <button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button>
+                                        </div>
+                                        <div class="prompt-bi-content">
+                                            <div class="prompt-bi-text active" data-lang="cz">Som obchodník pre značku Enervit v ČR. Pomôž mi napísať email novému potenciálnemu B2B partnerovi — fitness centru v Brne. Tón profesionálny, max 150 slov.</div>
+                                            <div class="prompt-bi-text" data-lang="en">I'm a sales rep for the Enervit brand in Czech Republic. Help me write an email to a new potential B2B partner — a fitness center in Brno. Professional tone, max 150 words.</div>
+                                        </div>
                                     </div>
                                     <div class="tip-box"><span>&#128161;</span> Všimni si — čím konkrétnejší prompt, tým lepšia odpoveď.</div>
                                 </div>
@@ -554,8 +632,16 @@
                                             <p>Návrh ďalších krokov</p>
                                         </div>
                                     </div>
-                                    <div class="prompt-example">
-                                        <strong>Prompt:</strong> "Nahral som PDF s mesačným reportom. Zhrň ho v 5 bodoch, vytiahni kľúčové čísla a navrhni 3 akčné kroky."
+                                    <div class="prompt-bi">
+                                        <div class="prompt-bi-bar">
+                                            <button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button>
+                                            <button class="lang-tab" onclick="switchLang(this,'en')">EN</button>
+                                            <button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button>
+                                        </div>
+                                        <div class="prompt-bi-content">
+                                            <div class="prompt-bi-text active" data-lang="cz">Nahral som PDF s mesačným reportom. Zhrň ho v 5 bodoch, vytiahni kľúčové čísla a navrhni 3 akčné kroky.</div>
+                                            <div class="prompt-bi-text" data-lang="en">I uploaded a PDF with the monthly report. Summarize it in 5 bullet points, extract key numbers, and suggest 3 action steps.</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -640,8 +726,16 @@
                                         </div>
                                     </div>
                                     <p style="margin-top: 12px;"><strong style="color: var(--text);">Úloha:</strong> Požiadaj Claude o artefakt pre tvoju prácu.</p>
-                                    <div class="prompt-example">
-                                        <strong>Príklad:</strong> "Vytvor porovnávaciu tabuľku Enervit Isotonic vs Isostar vs SiS — cena, zloženie, výhody, dostupnosť v CZ. Ako artefakt."
+                                    <div class="prompt-bi">
+                                        <div class="prompt-bi-bar">
+                                            <button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button>
+                                            <button class="lang-tab" onclick="switchLang(this,'en')">EN</button>
+                                            <button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button>
+                                        </div>
+                                        <div class="prompt-bi-content">
+                                            <div class="prompt-bi-text active" data-lang="cz">Vytvor porovnávaciu tabuľku Enervit Isotonic vs Isostar vs SiS — cena, zloženie, výhody, dostupnosť v CZ. Ako artefakt.</div>
+                                            <div class="prompt-bi-text" data-lang="en">Create a comparison table: Enervit Isotonic vs Isostar vs SiS — price, composition, benefits, availability in CZ. As an artifact.</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -658,14 +752,38 @@
                             <div class="task-body">
                                 <div class="task-body-inner">
                                     <p><strong style="color: var(--text);">Úloha:</strong> Napíš prompt pre email, ktorý naozaj potrebuješ odoslať tento týždeň. Potom iteruj — požiadaj Claude o úpravy.</p>
-                                    <div class="prompt-example">
-                                        <strong>1. prompt:</strong> "Napíš follow-up email po schôdzke s fitness centrom FitPark Brno. Dohodli sme sa na skúšobnej dodávke 20ks Enervit Isotonic. Tón priateľský, profesionálny. Max 100 slov."
+                                    <div class="prompt-bi">
+                                        <div class="prompt-bi-bar">
+                                            <button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button>
+                                            <button class="lang-tab" onclick="switchLang(this,'en')">EN</button>
+                                            <button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button>
+                                        </div>
+                                        <div class="prompt-bi-content">
+                                            <div class="prompt-bi-text active" data-lang="cz"><span class="prompt-label-inline">1. prompt:</span> Napíš follow-up email po schôdzke s fitness centrom FitPark Brno. Dohodli sme sa na skúšobnej dodávke 20ks Enervit Isotonic. Tón priateľský, profesionálny. Max 100 slov.</div>
+                                            <div class="prompt-bi-text" data-lang="en"><span class="prompt-label-inline">1. prompt:</span> Write a follow-up email after a meeting with FitPark Brno fitness center. We agreed on a trial delivery of 20x Enervit Isotonic. Friendly, professional tone. Max 100 words.</div>
+                                        </div>
                                     </div>
-                                    <div class="prompt-example">
-                                        <strong>2. iterácia:</strong> "Skráť to na 60 slov a pridaj CTA s dátumom dodania."
+                                    <div class="prompt-bi">
+                                        <div class="prompt-bi-bar">
+                                            <button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button>
+                                            <button class="lang-tab" onclick="switchLang(this,'en')">EN</button>
+                                            <button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button>
+                                        </div>
+                                        <div class="prompt-bi-content">
+                                            <div class="prompt-bi-text active" data-lang="cz"><span class="prompt-label-inline">2. iterácia:</span> Skráť to na 60 slov a pridaj CTA s dátumom dodania.</div>
+                                            <div class="prompt-bi-text" data-lang="en"><span class="prompt-label-inline">2. iteration:</span> Shorten it to 60 words and add a CTA with the delivery date.</div>
+                                        </div>
                                     </div>
-                                    <div class="prompt-example">
-                                        <strong>3. iterácia:</strong> "Zmeň tón na formálnejší, tykanie zmeň na vykanie."
+                                    <div class="prompt-bi">
+                                        <div class="prompt-bi-bar">
+                                            <button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button>
+                                            <button class="lang-tab" onclick="switchLang(this,'en')">EN</button>
+                                            <button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button>
+                                        </div>
+                                        <div class="prompt-bi-content">
+                                            <div class="prompt-bi-text active" data-lang="cz"><span class="prompt-label-inline">3. iterácia:</span> Zmeň tón na formálnejší, tykanie zmeň na vykanie.</div>
+                                            <div class="prompt-bi-text" data-lang="en"><span class="prompt-label-inline">3. iteration:</span> Change the tone to more formal, switch from informal to formal address.</div>
+                                        </div>
                                     </div>
                                     <div class="tip-box"><span>&#128161;</span> Iterovanie je kľúč. Prvý draft uprav 2-3x cez ďalšie prompty.</div>
                                 </div>
@@ -707,11 +825,27 @@
                                 <div class="task-body-inner">
                                     <p>Claude nemá prístup na internet, ale vie analyzovať dáta, ktoré mu dáš. Pre aktuálne info použi Perplexity a výsledky daj Claude na spracovanie.</p>
                                     <p><strong style="color: var(--text);">Vyskúšaj:</strong></p>
-                                    <div class="prompt-example">
-                                        <strong>Prompt:</strong> "Analyzuj český trh so športovou výživou — odhadni veľkosť, hlavných hráčov, trendy pre 2026. Porovnaj pozíciu Enervit s Nutrend, SiS, Isostar. Výstup ako tabuľka + 3 strategické odporúčania."
+                                    <div class="prompt-bi">
+                                        <div class="prompt-bi-bar">
+                                            <button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button>
+                                            <button class="lang-tab" onclick="switchLang(this,'en')">EN</button>
+                                            <button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button>
+                                        </div>
+                                        <div class="prompt-bi-content">
+                                            <div class="prompt-bi-text active" data-lang="cz">Analyzuj český trh so športovou výživou — odhadni veľkosť, hlavných hráčov, trendy pre 2026. Porovnaj pozíciu Enervit s Nutrend, SiS, Isostar. Výstup ako tabuľka + 3 strategické odporúčania.</div>
+                                            <div class="prompt-bi-text" data-lang="en">Analyze the Czech sports nutrition market — estimate size, key players, trends for 2026. Compare Enervit's position with Nutrend, SiS, Isostar. Output as a table + 3 strategic recommendations.</div>
+                                        </div>
                                     </div>
-                                    <div class="prompt-example">
-                                        <strong>S dátami:</strong> Nahraj CSV s mesačnými predajmi &rarr; "Identifikuj top 10 produktov, mesiac-nad-mesiac trend a produkty s klesajúcim trendom."
+                                    <div class="prompt-bi">
+                                        <div class="prompt-bi-bar">
+                                            <button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button>
+                                            <button class="lang-tab" onclick="switchLang(this,'en')">EN</button>
+                                            <button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button>
+                                        </div>
+                                        <div class="prompt-bi-content">
+                                            <div class="prompt-bi-text active" data-lang="cz"><span class="prompt-label-inline">S dátami:</span> Nahral som CSV s mesačnými predajmi. Identifikuj top 10 produktov, mesiac-nad-mesiac trend a produkty s klesajúcim trendom.</div>
+                                            <div class="prompt-bi-text" data-lang="en"><span class="prompt-label-inline">With data:</span> I uploaded a CSV with monthly sales. Identify the top 10 products, month-over-month trend, and products with a declining trend.</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -731,31 +865,55 @@
                                     <div class="compare-row">
                                         <div class="compare-card bad">
                                             <div class="compare-label bad">Zlý prompt</div>
-                                            <div class="compare-text">"Napíš email"</div>
+                                            <div class="compare-text">"Napíš email" / "Write an email"</div>
                                         </div>
                                         <div class="compare-card good">
                                             <div class="compare-label good">Dobrý prompt</div>
-                                            <div class="compare-text">"Napíš B2B email pre fitness centrum v Brne. Enervit športová výživa. Tón profesionálny. Max 150 slov. CTA na stretnutie."</div>
+                                            <div class="compare-text" style="font-style: normal;">
+                                                <div class="prompt-bi" style="margin: 0;">
+                                                    <div class="prompt-bi-bar"><button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button><button class="lang-tab" onclick="switchLang(this,'en')">EN</button><button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button></div>
+                                                    <div class="prompt-bi-content">
+                                                        <div class="prompt-bi-text active" data-lang="cz">Napíš B2B email pre fitness centrum v Brne. Enervit športová výživa. Tón profesionálny. Max 150 slov. CTA na stretnutie.</div>
+                                                        <div class="prompt-bi-text" data-lang="en">Write a B2B email for a fitness center in Brno. Enervit sports nutrition. Professional tone. Max 150 words. CTA for a meeting.</div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="compare-row">
                                         <div class="compare-card bad">
                                             <div class="compare-label bad">Zlý prompt</div>
-                                            <div class="compare-text">"Analyzuj dáta"</div>
+                                            <div class="compare-text">"Analyzuj dáta" / "Analyze data"</div>
                                         </div>
                                         <div class="compare-card good">
                                             <div class="compare-label good">Dobrý prompt</div>
-                                            <div class="compare-text">"Nahral som CSV s predajmi. Top 5 produktov podľa obratu, M/M trend, klesajúce produkty. Výstup ako tabuľka."</div>
+                                            <div class="compare-text" style="font-style: normal;">
+                                                <div class="prompt-bi" style="margin: 0;">
+                                                    <div class="prompt-bi-bar"><button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button><button class="lang-tab" onclick="switchLang(this,'en')">EN</button><button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button></div>
+                                                    <div class="prompt-bi-content">
+                                                        <div class="prompt-bi-text active" data-lang="cz">Nahral som CSV s predajmi. Top 5 produktov podľa obratu, M/M trend, klesajúce produkty. Výstup ako tabuľka.</div>
+                                                        <div class="prompt-bi-text" data-lang="en">I uploaded a CSV with sales data. Top 5 products by revenue, M/M trend, declining products. Output as a table.</div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="compare-row">
                                         <div class="compare-card bad">
                                             <div class="compare-label bad">Zlý prompt</div>
-                                            <div class="compare-text">"Pomôž mi s prezentáciou"</div>
+                                            <div class="compare-text">"Pomôž mi s prezentáciou" / "Help me with a presentation"</div>
                                         </div>
                                         <div class="compare-card good">
                                             <div class="compare-label good">Dobrý prompt</div>
-                                            <div class="compare-text">"Osnova 10-slide prezentácie pre Intersport: prečo Enervit. Slide 1=hook, 2-3=trh, 4-6=produkty, 7-8=marže, 9=podpora, 10=CTA."</div>
+                                            <div class="compare-text" style="font-style: normal;">
+                                                <div class="prompt-bi" style="margin: 0;">
+                                                    <div class="prompt-bi-bar"><button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button><button class="lang-tab" onclick="switchLang(this,'en')">EN</button><button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button></div>
+                                                    <div class="prompt-bi-content">
+                                                        <div class="prompt-bi-text active" data-lang="cz">Osnova 10-slide prezentácie pre Intersport: prečo Enervit. Slide 1=hook, 2-3=trh, 4-6=produkty, 7-8=marže, 9=podpora, 10=CTA.</div>
+                                                        <div class="prompt-bi-text" data-lang="en">Outline a 10-slide presentation for Intersport: why stock Enervit. Slide 1=hook, 2-3=market, 4-6=products, 7-8=margins, 9=support, 10=CTA.</div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -1216,6 +1374,29 @@ function toggleTimeline(header) {
 }
 function toggleTask(header) {
     header.closest('.task').classList.toggle('open');
+}
+function switchLang(tab, lang) {
+    var bar = tab.closest('.prompt-bi-bar');
+    var container = tab.closest('.prompt-bi');
+    bar.querySelectorAll('.lang-tab').forEach(function(t) { t.classList.remove('active'); });
+    tab.classList.add('active');
+    container.querySelectorAll('.prompt-bi-text').forEach(function(t) {
+        t.classList.toggle('active', t.getAttribute('data-lang') === lang);
+    });
+}
+function copyPrompt(btn) {
+    var container = btn.closest('.prompt-bi');
+    var activeText = container.querySelector('.prompt-bi-text.active');
+    if (!activeText) return;
+    var text = activeText.textContent.trim();
+    navigator.clipboard.writeText(text).then(function() {
+        btn.textContent = 'Skopirované!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+            btn.textContent = 'Kopírovať';
+            btn.classList.remove('copied');
+        }, 2000);
+    });
 }
 </script>
 
