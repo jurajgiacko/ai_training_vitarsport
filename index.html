@@ -1649,16 +1649,97 @@
             </div>
             <div class="timeline-body">
                 <div class="timeline-body-inner">
-                    <div class="rules-list">
-                        <div class="rule-item"><div class="rule-icon">&#9993;</div><div class="rule-text"><strong>B2B prospecting emaily</strong> na mieru pre každého partnera</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128172;</div><div class="rule-text"><strong>Follow-up po schôdzke</strong> — za 2 minúty hotový</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128218;</div><div class="rule-text"><strong>Príprava na meeting</strong> — research partnera, otázky, stratégia</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128269;</div><div class="rule-text"><strong>Analýza konkurencie</strong> — porovnanie cien, produktov, trhu</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128202;</div><div class="rule-text"><strong>Ponuky a prezentácie</strong> pre retailerov a partnerov</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128221;</div><div class="rule-text"><strong>CRM poznámky</strong> zo stretnutí — rýchla sumarizácia</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128172;</div><div class="rule-text"><strong>Objekcie zákazníkov</strong> — "Zákazník hovorí X, čo odpovedať?"</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128203;</div><div class="rule-text"><strong>Obchodný plán pre nového dealera</strong> — príprava a stratégia</div></div>
-                        <div class="rule-item" style="grid-column: 1 / -1;"><div class="rule-icon">&#128200;</div><div class="rule-text"><strong>Analýza objednávok a identifikácia upsellu</strong> — príležitosti na rozšírenie portfólia u existujúcich partnerov</div></div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">Claude ti ušetrí hodiny týždenne na emailoch, príprave na schôdzky a analýzach. Tu sú scenáre, ktoré môžeš použiť hneď zajtra.</p>
+                    <div class="task-list">
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--green-soft); color: var(--green);">&#9993;</div>
+                                <div class="task-label">Prospecting a cold outreach</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p><strong style="color: var(--text);">Scenár:</strong> Máš zoznam 20 fitness centier v Brne a chceš im napísať úvodný email. Namiesto copy-paste šablóny necháš Claude napísať personalizovaný email pre každé — stačí mu povedať meno, zameranie a čím sa líšia.</p>
+                                    <p><strong style="color: var(--text);">Čo ušetríš:</strong> 30 min na email &rarr; 2 min. Za hodinu máš hotových 20 personalizovaných emailov.</p>
+                                    <p><strong style="color: var(--text);">Príklady promptov:</strong></p>
+                                    <p style="font-size: 0.85rem;">&bull; "Napiš úvodný email pre CrossFit box v Plzni — zdôrazni gely a isotoniky pre ich klientov"</p>
+                                    <p style="font-size: 0.85rem;">&bull; "Napiš email pre bežecký obchod — zdôrazni, že sme partner Jizerské 50"</p>
+                                    <p style="font-size: 0.85rem;">&bull; "Uprav predchádzajúci email pre cyklo shop — zameň beh na cyklistiku"</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--green-soft); color: var(--green);">&#128218;</div>
+                                <div class="task-label">Príprava na schôdzku s partnerom</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p><strong style="color: var(--text);">Scenár:</strong> Zajtra máš schôdzku s nákupčím Decathlonu. Claude ti za 5 minút pripraví: research o partnerovi, 5 argumentov prečo Enervit, odpovede na námietky ("je to drahé", "máme Nutrend") a štruktúru 30-min meetingu.</p>
+                                    <p><strong style="color: var(--text);">Čo ušetríš:</strong> 1-2 hodiny prípravy &rarr; 5 minút. A ideš na schôdzku s lepšou prípravou než kedykoľvek predtým.</p>
+                                    <p><strong style="color: var(--text);">Tip:</strong> Ak máš v Claude projekte nahraný cenník a produktový katalóg, odpovede budú ešte presnejšie.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--green-soft); color: var(--green);">&#128172;</div>
+                                <div class="task-label">Follow-up emaily a zápisy zo schôdzok</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p><strong style="color: var(--text);">Scenár:</strong> Práve si vyšiel zo schôdzky. Do Claude napíšeš pár bodov ("dohodli sme sa na 20ks trial, dodanie streda, chcú POS materiály"). Claude ti vygeneruje: 1) follow-up email pre partnera, 2) CRM poznámku, 3) interný sumár pre tím. Všetko za 2 minúty v aute.</p>
+                                    <p><strong style="color: var(--text);">Čo ušetríš:</strong> Follow-up pošleš do 10 minút po schôdzke (namiesto "pošlem to zajtra" a potom zabudneš).</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--green-soft); color: var(--green);">&#128269;</div>
+                                <div class="task-label">Konkurenčná analýza a argumentácia</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p><strong style="color: var(--text);">Scenár:</strong> Partner sa pýta "Prečo Enervit a nie Nutrend, keď je lacnejší?" Claude ti pripraví porovnávaciu tabuľku s cenami za porciu, zložením, certifikáciami a argumentmi. Môžeš si to aj vytlačiť alebo poslať ako prílohu.</p>
+                                    <p><strong style="color: var(--text);">Ďalšie použitia:</strong></p>
+                                    <p style="font-size: 0.85rem;">&bull; "Porovnaj RoyalBay vs CEP vs Compressport — cena, materiál, dostupnosť v ČR"</p>
+                                    <p style="font-size: 0.85rem;">&bull; "Aké sú trendy v športovej výžive v ČR pre 2026? Čo rastie, čo klesá?"</p>
+                                    <p style="font-size: 0.85rem;">&bull; "Zákazník hovorí, že Enervit nepozná nikto. Čo na to odpovedať?"</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--green-soft); color: var(--green);">&#128202;</div>
+                                <div class="task-label">Ponuky, prezentácie a obchodné plány</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p><strong style="color: var(--text);">Scenár:</strong> Potrebuješ prezentáciu pre Intersport — prečo zařadiť Enervit. Claude ti vygenreuje 10-slide osnovu s hook-om, tržnými dátami, portfóliom, maržami a CTA. Potom požiadaš o rozpísanie každého slidu.</p>
+                                    <p><strong style="color: var(--text);">Ďalšie použitia:</strong></p>
+                                    <p style="font-size: 0.85rem;">&bull; "Vytvor obchodný plán pre nového dealera — onboarding, prvá objednávka, ciele na Q2"</p>
+                                    <p style="font-size: 0.85rem;">&bull; "Nahral som CSV s objednávkami partnera. Kde sú upsell príležitosti?"</p>
+                                    <p style="font-size: 0.85rem;">&bull; "Priprav kvartálny report pre Enervit HQ — predaje, nové partnerstvá, výhľad"</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--green-soft); color: var(--green);">&#128161;</div>
+                                <div class="task-label">Námietky zákazníkov — ako reagovať</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p><strong style="color: var(--text);">Scenár:</strong> Zákazník hovorí "Je to drahé" / "Nikto to nepozná" / "Už mám Nutrend". Claude ti pripraví 3 konkrétne odpovede na každú námietku — s číslami, príkladmi a argumentmi.</p>
+                                    <p><strong style="color: var(--text);">Pro tip:</strong> Požiadaj Claude: "Priprav mi kartu námietok — 5 najčastejších námietok a 3 odpovede na každú. Formát: tabuľka." Vytlač si ju a ber so sebou na schôdzky.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1677,17 +1758,34 @@
             </div>
             <div class="timeline-body">
                 <div class="timeline-body-inner">
-                    <div class="rules-list">
-                        <div class="rule-item"><div class="rule-icon">&#128241;</div><div class="rule-text"><strong>Social media posty</strong> — Instagram, Facebook, LinkedIn</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128221;</div><div class="rule-text"><strong>Blogovky a články</strong> pre web — SEO optimalizované</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#127919;</div><div class="rule-text"><strong>PPC ad copy</strong> — variácie pre A/B testovanie</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128722;</div><div class="rule-text"><strong>Produktové popisky</strong> pre e-shop</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128200;</div><div class="rule-text"><strong>Analýza dát</strong> z kampání a reportov</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128202;</div><div class="rule-text"><strong>Prezentácie</strong> pre Enervit HQ a partnerov</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128300;</div><div class="rule-text"><strong>A/B testy landing pages</strong> — návrhy variácií a copy</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128232;</div><div class="rule-text"><strong>Copywriting pre newslettre</strong> — subject lines, body, CTA</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128200;</div><div class="rule-text"><strong>Analýza Instagram insights</strong> — trendy, odporúčania, optimalizácia</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#127881;</div><div class="rule-text"><strong>Brainstorming kampaní</strong> pre sezónne eventy a akcie</div></div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">Claude ti pomôže s tvorbou obsahu, analýzou kampaní a brainstormingom. Namiesto hodín písania — drafty za minúty.</p>
+                    <div class="task-list">
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--purple-soft); color: var(--purple);">&#128241;</div>
+                                <div class="task-label">Social media a content</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p><strong style="color: var(--text);">Scenár:</strong> Potrebuješ 5 Instagram postov na jarní sezónu. Claude ti vygeneruje hooks, texty, hashtagy a odporúčania na vizuály — všetko v brand voice Enervitu. Iteruj: "Viac energický tón", "Pridaj emoji", "Verzia pre LinkedIn".</p>
+                                    <p><strong style="color: var(--text);">Ďalšie:</strong> Produktové popisky pre e-shop, blogovky (SEO), PPC ad copy (A/B varianty), newslettre.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--purple-soft); color: var(--purple);">&#128200;</div>
+                                <div class="task-label">Analýza a reporty</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p><strong style="color: var(--text);">Scenár:</strong> Nahraj export z Instagram Insights alebo Google Analytics. Claude ti identifikuje trendy, top posty, odporučí čas publikovania a navrhne content plán na ďalší mesiac.</p>
+                                    <p><strong style="color: var(--text);">Ďalšie:</strong> Prezentácie pre Enervit HQ, brainstorming kampaní pre sezónne eventy, A/B test návrhy.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1706,16 +1804,33 @@
             </div>
             <div class="timeline-body">
                 <div class="timeline-body-inner">
-                    <div class="rules-list">
-                        <div class="rule-item"><div class="rule-icon">&#128197;</div><div class="rule-text"><strong>Event plánovacie dokumenty</strong> — checklisty, harmonogramy</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#9993;</div><div class="rule-text"><strong>Follow-up emaily</strong> po eventoch a schôdzkach</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128203;</div><div class="rule-text"><strong>Procesné dokumentácie</strong> a SOP</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#9989;</div><div class="rule-text"><strong>Checklisty</strong> pre expo stánky a materiál</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128172;</div><div class="rule-text"><strong>Zákaznícka komunikácia</strong> — odpovede, FAQ</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128221;</div><div class="rule-text"><strong>Meeting sumáre</strong> a zápisy z porád</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128214;</div><div class="rule-text"><strong>FAQ a knowledge base články</strong> — tvorba a aktualizácia</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128232;</div><div class="rule-text"><strong>Šablóny pre zákaznícke odpovede</strong> — štandardizovaná komunikácia</div></div>
-                        <div class="rule-item" style="grid-column: 1 / -1;"><div class="rule-icon">&#128101;</div><div class="rule-text"><strong>Onboarding dokumentácia pre nových ľudí</strong> — procesy, kontakty, návody</div></div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">Eventy, checklisty, zákaznícka komunikácia — Claude ti pomôže všetko pripraviť rýchlejšie a nič nezabudnúť.</p>
+                    <div class="task-list">
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--blue-soft); color: var(--blue);">&#128197;</div>
+                                <div class="task-label">Event planning a checklisty</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p><strong style="color: var(--text);">Scenár:</strong> Chystáš stánek na RunCzech maratón. Claude ti vytvorí kompletný checklist: materiál (stánek, bannery, vzorky), harmonogram (deň pred, deň akce), role tímu a follow-up aktivity. Všetko s checkboxmi — vytlačíš a odškrtávaš.</p>
+                                    <p><strong style="color: var(--text);">Ďalšie:</strong> SOP dokumentácie, procesné návody, harmonogramy pre každý event v kalendári.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--blue-soft); color: var(--blue);">&#128172;</div>
+                                <div class="task-label">Zákaznícka komunikácia a FAQ</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p><strong style="color: var(--text);">Scenár:</strong> Zákazníci sa pýtajú stále to isté — "Kde kúpiť?", "Aký je rozdiel medzi Isotonic a C2:1?", "Ako reklamovať?". Claude ti vygeneruje FAQ databázu s odpoveďami v správnom tóne. Šablóny pre zákaznícke odpovede, meeting sumáre, onboarding dokumenty pre nových ľudí.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1734,12 +1849,32 @@
             </div>
             <div class="timeline-body">
                 <div class="timeline-body-inner">
-                    <div class="rules-list">
-                        <div class="rule-item"><div class="rule-icon">&#128200;</div><div class="rule-text"><strong>Strategická analýza a rozhodovanie</strong> — scenáre, SWOT, trhy</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128202;</div><div class="rule-text"><strong>Príprava board prezentácií</strong> — dáta, story, vizuály</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#127919;</div><div class="rule-text"><strong>Delegovanie a prioritizácia úloh</strong> — Eisenhower, OKR, weekly review</div></div>
-                        <div class="rule-item"><div class="rule-icon">&#128176;</div><div class="rule-text"><strong>Finančná analýza a KPI tracking</strong> — P&amp;L, marže, ciele</div></div>
-                        <div class="rule-item" style="grid-column: 1 / -1;"><div class="rule-icon">&#128187;</div><div class="rule-text"><strong>Interné nástroje a automatizácie (vibe-coding)</strong> — prototypy, dashboardy, interné appky</div></div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">AI ako strategický partner — analýzy, prezentácie, rozhodovanie a vibe-coding interných nástrojov.</p>
+                    <div class="task-list">
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--accent-soft); color: var(--accent);">&#128200;</div>
+                                <div class="task-label">Stratégia a rozhodovanie</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p><strong style="color: var(--text);">Scenár:</strong> Rozhoduješ sa, či expandovať RoyalBay do fitko reťazcov. Claude ti pripraví SWOT analýzu, odhad nákladov, scenáre (best/worst case) a akčný plán. Board prezentácie, kvartálne reporty, KPI tracking, finančné analýzy — všetko za zlomok času.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task">
+                            <div class="task-header" onclick="toggleTask(this)">
+                                <div class="task-num" style="background: var(--accent-soft); color: var(--accent);">&#128187;</div>
+                                <div class="task-label">Vibe-coding a automatizácie</div>
+                                <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="task-body">
+                                <div class="task-body-inner">
+                                    <p><strong style="color: var(--text);">Scenár:</strong> Potrebuješ interný nástroj — kalkulačku marží, QR generátor, dashboard. S AI nástrojmi ako Cursor postavíš prototyp za jedno poobede. Nápad ráno, funkčný nástroj večer. Nie teória — reálne interné appky, ktoré tím používa denne.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
