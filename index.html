@@ -871,30 +871,35 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem;">Hlavný blok workshopu. Vyskúšaš si 4 praktické use cases, ktoré budeš používať každý deň.</p>
 
                     <div class="task-list">
-                        <!-- A -->
+                        <!-- A: Analýza dát -->
                         <div class="task">
                             <div class="task-header" onclick="toggleTask(this)">
                                 <div class="task-num" style="background: var(--green-soft); color: var(--green);">A</div>
-                                <div class="task-label">Práca s dokumentami</div>
+                                <div class="task-label">Analýza predajných dát</div>
                                 <div class="task-tag" style="background: var(--purple-soft); color: var(--purple);">cvičenie</div>
                                 <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                             </div>
                             <div class="task-body">
                                 <div class="task-body-inner">
-                                    <p>Nahraj PDF, CSV alebo textový dokument do Claude a nechaj ho analyzovať.</p>
-                                    <p><strong style="color: var(--text);">Úloha:</strong> Nahraj svoj pracovný dokument a požiadaj Claude o:</p>
+                                    <p>Nahraj CSV s predajmi do Claude a nechaj ho analyzovať — top produkty, trendy, odporúčania. Presne tak, ako by si to robil s mesačným reportom.</p>
+                                    <p style="margin: 12px 0;"><a href="sample-data-prodeje.csv" download style="display: inline-flex; align-items: center; gap: 8px; background: var(--green-soft); color: var(--green); padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.88rem; border: 1px solid rgba(5,150,105,0.15);">&#128196; Stiahnuť sample-data-prodeje.csv</a></p>
+                                    <p><strong style="color: var(--text);">Úloha — krok za krokom:</strong></p>
                                     <div class="mini-steps">
                                         <div class="mini-step">
                                             <div class="mini-step-num" style="background: var(--green-soft); color: var(--green);">1</div>
-                                            <p>Sumarizáciu v 5 bodoch</p>
+                                            <p><strong>Stiahni súbor</strong> vyššie a otvor <a href="https://claude.ai" target="_blank" style="color: var(--blue);">claude.ai</a></p>
                                         </div>
                                         <div class="mini-step">
                                             <div class="mini-step-num" style="background: var(--green-soft); color: var(--green);">2</div>
-                                            <p>Identifikáciu kľúčových čísel alebo rozhodnutí</p>
+                                            <p><strong>Nahraj CSV</strong> do novej konverzácie (klikni na ikonu +)</p>
                                         </div>
                                         <div class="mini-step">
                                             <div class="mini-step-num" style="background: var(--green-soft); color: var(--green);">3</div>
-                                            <p>Návrh ďalších krokov</p>
+                                            <p><strong>Skopíruj prompt</strong> nižšie a pošli ho</p>
+                                        </div>
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--green-soft); color: var(--green);">4</div>
+                                            <p><strong>Skúšaj iterovať</strong> — "Urob z toho graf", "Porovnaj Enervit vs RoyalBay", "Ktorý partner rastie najrýchlejšie?"</p>
                                         </div>
                                     </div>
                                     <div class="prompt-bi">
@@ -904,63 +909,82 @@
                                             <button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button>
                                         </div>
                                         <div class="prompt-bi-content">
-                                            <div class="prompt-bi-text active" data-lang="cz">Nahrál jsem PDF s měsíčním reportem. Shrň ho v 5 bodech, vytáhni klíčová čísla a navrhni 3 akční kroky.</div>
-                                            <div class="prompt-bi-text" data-lang="en">I uploaded a PDF with the monthly report. Summarize it in 5 bullet points, extract key numbers, and suggest 3 action steps.</div>
+                                            <div class="prompt-bi-text active" data-lang="cz">Nahrál jsem CSV s prodeji Enervit a RoyalBay za leden–únor 2026. Analyzuj data a vytvoř: 1) Top 5 produktů podle obratu jako tabulku, 2) Porovnání leden vs únor — které produkty rostou a které klesají (M/M trend), 3) Který partner má největší obrat, 4) 3 konkrétní doporučení co udělat v březnu. Formát: strukturovaný report s nadpisy.</div>
+                                            <div class="prompt-bi-text" data-lang="en">I uploaded a CSV with Enervit and RoyalBay sales for January–February 2026. Analyze the data and create: 1) Top 5 products by revenue as a table, 2) January vs February comparison — which products are growing and declining (M/M trend), 3) Which partner has the highest revenue, 4) 3 specific recommendations for March. Format: structured report with headings.</div>
                                         </div>
                                     </div>
+                                    <div class="tip-box"><span>&#128161;</span> Toto isté môžeš urobiť s reálnym exportom z Pohody alebo z e-shopu. Claude zvládne CSV, Excel aj PDF.</div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- B -->
+                        <!-- B: Email Generator projekt -->
                         <div class="task">
                             <div class="task-header" onclick="toggleTask(this)">
                                 <div class="task-num" style="background: var(--green-soft); color: var(--green);">B</div>
-                                <div class="task-label">Vytvorenie projektu v Claude</div>
-                                <div class="task-tag" style="background: var(--purple-soft); color: var(--purple);">cvičenie</div>
+                                <div class="task-label">Email Generator — vytvor si Claude projekt</div>
+                                <div class="task-tag" style="background: var(--accent-soft); color: var(--accent);">key task</div>
                                 <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                             </div>
                             <div class="task-body">
                                 <div class="task-body-inner">
-                                    <p>Projekty sú najsilnejšia funkcia Claude. Nastav si trvalý kontext, ktorý bude platiť v každej novej konverzácii.</p>
+                                    <p>Toto je <strong style="color: var(--text);">najdôležitejšia úloha workshopu</strong>. Vytvoríš si Claude projekt, nahráš vzorové emaily a Claude sa naučí tvoj komunikačný štýl. Potom bude generovať emaily, ktoré znejú ako ty.</p>
+                                    <p style="margin: 12px 0;"><a href="sample-emaily-b2b.txt" download style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent-soft); color: var(--accent); padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.88rem; border: 1px solid rgba(233,69,96,0.15);">&#128232; Stiahnuť sample-emaily-b2b.txt</a></p>
+                                    <p><strong style="color: var(--text);">Úloha — krok za krokom:</strong></p>
                                     <div class="mini-steps">
                                         <div class="mini-step">
-                                            <div class="mini-step-num" style="background: var(--green-soft); color: var(--green);">1</div>
-                                            <p><strong>Klikni "Projects"</strong> v ľavom sidebar a potom "New Project"</p>
+                                            <div class="mini-step-num" style="background: var(--accent-soft); color: var(--accent);">1</div>
+                                            <p><strong>Klikni "Projects"</strong> v ľavom sidebar Claude a vytvor nový projekt</p>
                                         </div>
                                         <div class="mini-step">
-                                            <div class="mini-step-num" style="background: var(--green-soft); color: var(--green);">2</div>
-                                            <p><strong>Nastav Custom Instructions</strong> — povedz kto si, aký tón chceš, čo riešiš</p>
+                                            <div class="mini-step-num" style="background: var(--accent-soft); color: var(--accent);">2</div>
+                                            <p><strong>Pomenuj ho</strong> "Enervit Email Asistent"</p>
                                         </div>
                                         <div class="mini-step">
-                                            <div class="mini-step-num" style="background: var(--green-soft); color: var(--green);">3</div>
-                                            <p><strong>Nahraj Knowledge</strong> — cenníky, brand guide, produktové listy</p>
-                                        </div>
-                                        <div class="mini-step">
-                                            <div class="mini-step-num" style="background: var(--green-soft); color: var(--green);">4</div>
-                                            <p><strong>Začni chat</strong> — nový chat v projekte automaticky pozná tvoj kontext</p>
+                                            <div class="mini-step-num" style="background: var(--accent-soft); color: var(--accent);">3</div>
+                                            <p><strong>Custom Instructions</strong> — skopíruj a vlož:</p>
                                         </div>
                                     </div>
-                                    <p><strong style="color: var(--text);">Úloha:</strong> Vytvor projekt pre svoju rolu:</p>
-                                    <div class="rules-list">
-                                        <div class="rule-item">
-                                            <div class="rule-icon">&#128200;</div>
-                                            <div class="rule-text"><strong>Sales:</strong> "Enervit B2B Sales" — inštrukcie pre obchodné emaily + cenník</div>
+                                    <div class="prompt-bi">
+                                        <div class="prompt-bi-bar">
+                                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-right: auto;">Custom Instructions</span>
+                                            <button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button>
+                                            <button class="lang-tab" onclick="switchLang(this,'en')">EN</button>
+                                            <button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button>
                                         </div>
-                                        <div class="rule-item">
-                                            <div class="rule-icon">&#127912;</div>
-                                            <div class="rule-text"><strong>Marketing:</strong> "Enervit Content" — brand voice, cieľovka, kanály</div>
-                                        </div>
-                                        <div class="rule-item">
-                                            <div class="rule-icon">&#128221;</div>
-                                            <div class="rule-text"><strong>Operations:</strong> "VITAR Events" — event checklisty, follow-up šablóny</div>
+                                        <div class="prompt-bi-content">
+                                            <div class="prompt-bi-text active" data-lang="cz">Jsem obchodní zástupce značky Enervit (italská prémiová sportovní výživa) a RoyalBay (kompresní oblečení) pro český trh. Pracuji v VITAR Sport s.r.o. Pomáhej mi psát B2B emaily partnerům — fitness centrům, sportovním obchodům, řetězcům, organizátorům závodů. Tón: profesionální ale přátelský. Vykání. Stručné — max 150 slov pokud neřeknu jinak. V Knowledge najdeš vzorové emaily — nauč se z nich můj styl a formát.</div>
+                                            <div class="prompt-bi-text" data-lang="en">I'm a sales rep for Enervit (Italian premium sports nutrition) and RoyalBay (compression wear) in the Czech market. I work at VITAR Sport s.r.o. Help me write B2B emails to partners — fitness centers, sports shops, retail chains, race organizers. Tone: professional but friendly. Formal address. Concise — max 150 words unless I say otherwise. In Knowledge you'll find sample emails — learn my style and format from them.</div>
                                         </div>
                                     </div>
+                                    <div class="mini-steps" style="margin-top: 12px;">
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--accent-soft); color: var(--accent);">4</div>
+                                            <p><strong>Nahraj Knowledge</strong> — stiahnutý súbor <code style="background: var(--bg-surface); padding: 2px 6px; border-radius: 4px; font-size: 0.82rem;">sample-emaily-b2b.txt</code> (alebo svoje vlastné emaily!)</p>
+                                        </div>
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--accent-soft); color: var(--accent);">5</div>
+                                            <p><strong>Začni nový chat</strong> v projekte a vyskúšaj:</p>
+                                        </div>
+                                    </div>
+                                    <div class="prompt-bi">
+                                        <div class="prompt-bi-bar">
+                                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-right: auto;">Testovací prompt</span>
+                                            <button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button>
+                                            <button class="lang-tab" onclick="switchLang(this,'en')">EN</button>
+                                            <button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button>
+                                        </div>
+                                        <div class="prompt-bi-content">
+                                            <div class="prompt-bi-text active" data-lang="cz">Napiš úvodní email pro nový fitness centrum GymBox v Ostravě. Nikdy jsme s nimi nespolupracovali. Zmíň zkušební dodávku a nabídni online call.</div>
+                                            <div class="prompt-bi-text" data-lang="en">Write an introductory email for a new fitness center GymBox in Ostrava. We've never worked with them. Mention a trial delivery and offer an online call.</div>
+                                        </div>
+                                    </div>
+                                    <div class="tip-box"><span>&#128161;</span> Pro tip: Nahraj do Knowledge aj svoje reálne emaily (5-10 najlepších). Čím viac príkladov, tým lepšie Claude zachytí tvoj štýl. Funguje to aj s cenníkom, brand guide alebo produktovým katalógom.</div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- C -->
+                        <!-- C: Artefakty -->
                         <div class="task">
                             <div class="task-header" onclick="toggleTask(this)">
                                 <div class="task-num" style="background: var(--green-soft); color: var(--green);">C</div>
@@ -970,87 +994,115 @@
                             </div>
                             <div class="task-body">
                                 <div class="task-body-inner">
-                                    <p>Artefakty sú interaktívne výstupy — tabuľky, dokumenty, kód, vizualizácie — ktoré Claude generuje priamo v konverzácii.</p>
-                                    <p><strong style="color: var(--text);">Čo Claude vie vygenerovať:</strong></p>
-                                    <div class="rules-list">
-                                        <div class="rule-item">
-                                            <div class="rule-icon">&#128202;</div>
-                                            <div class="rule-text"><strong>Tabuľky</strong> — porovnanie produktov, cenníky, reporty</div>
-                                        </div>
-                                        <div class="rule-item">
-                                            <div class="rule-icon">&#128196;</div>
-                                            <div class="rule-text"><strong>Dokumenty</strong> — emaily, SOP, checklisty, prezentácie</div>
-                                        </div>
-                                        <div class="rule-item">
-                                            <div class="rule-icon">&#128187;</div>
-                                            <div class="rule-text"><strong>Kód</strong> — skripty, HTML stránky, kalkulačky</div>
-                                        </div>
-                                        <div class="rule-item">
-                                            <div class="rule-icon">&#128200;</div>
-                                            <div class="rule-text"><strong>Vizualizácie</strong> — grafy, diagramy, infografiky</div>
+                                    <p>Artefakty sú interaktívne výstupy, ktoré Claude generuje priamo v konverzácii — tabuľky, dokumenty, kód, vizualizácie. Môžeš ich stiahnuť, upraviť alebo zdieľať.</p>
+                                    <p><strong style="color: var(--text);">Úloha — vyskúšaj všetky 3 typy:</strong></p>
+                                    <div class="mini-steps" style="margin-bottom: 12px;">
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--green-soft); color: var(--green);">1</div>
+                                            <p><strong>Porovnávacia tabuľka</strong> — skopíruj prompt a pošli ho v Claude</p>
                                         </div>
                                     </div>
-                                    <p style="margin-top: 12px;"><strong style="color: var(--text);">Úloha:</strong> Požiadaj Claude o artefakt pre tvoju prácu.</p>
                                     <div class="prompt-bi">
                                         <div class="prompt-bi-bar">
+                                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-right: auto;">Tabuľka</span>
                                             <button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button>
                                             <button class="lang-tab" onclick="switchLang(this,'en')">EN</button>
                                             <button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button>
                                         </div>
                                         <div class="prompt-bi-content">
-                                            <div class="prompt-bi-text active" data-lang="cz">Vytvoř srovnávací tabulku Enervit Isotonic vs Isostar vs SiS — cena, složení, výhody, dostupnost v ČR. Jako artefakt.</div>
-                                            <div class="prompt-bi-text" data-lang="en">Create a comparison table: Enervit Isotonic vs Isostar vs SiS — price, composition, benefits, availability in CZ. As an artifact.</div>
+                                            <div class="prompt-bi-text active" data-lang="cz">Vytvoř srovnávací tabulku jako artefakt: Enervit Isotonic vs Nutrend Isodrinx vs SiS GO Electrolyte vs Isostar Hydrate. Sloupce: cena za porci, klíčové složení, cílová skupina, dostupnost v ČR, náš argument pro prodejce. Přidej řádek "Verdikt" s doporučením.</div>
+                                            <div class="prompt-bi-text" data-lang="en">Create a comparison table as an artifact: Enervit Isotonic vs Nutrend Isodrinx vs SiS GO Electrolyte vs Isostar Hydrate. Columns: price per serving, key composition, target audience, availability in CZ, our argument for retailers. Add a "Verdict" row with recommendation.</div>
                                         </div>
                                     </div>
+                                    <div class="mini-steps" style="margin: 12px 0;">
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--green-soft); color: var(--green);">2</div>
+                                            <p><strong>Checklist / dokument</strong></p>
+                                        </div>
+                                    </div>
+                                    <div class="prompt-bi">
+                                        <div class="prompt-bi-bar">
+                                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-right: auto;">Dokument</span>
+                                            <button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button>
+                                            <button class="lang-tab" onclick="switchLang(this,'en')">EN</button>
+                                            <button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button>
+                                        </div>
+                                        <div class="prompt-bi-content">
+                                            <div class="prompt-bi-text active" data-lang="cz">Vytvoř jako artefakt kompletní checklist pro přípravu stánku Enervit na běžeckém závodě. Sekce: 2 týdny před (materiál, logistika), 1 den před (příprava), den akce (harmonogram po hodinách), po akci (follow-up). S zaškrtávacími políčky.</div>
+                                            <div class="prompt-bi-text" data-lang="en">Create as an artifact a complete checklist for preparing an Enervit booth at a running race. Sections: 2 weeks before (materials, logistics), 1 day before (setup), event day (hourly schedule), after event (follow-up). With checkboxes.</div>
+                                        </div>
+                                    </div>
+                                    <div class="mini-steps" style="margin: 12px 0;">
+                                        <div class="mini-step">
+                                            <div class="mini-step-num" style="background: var(--green-soft); color: var(--green);">3</div>
+                                            <p><strong>Vizualizácia / kód</strong></p>
+                                        </div>
+                                    </div>
+                                    <div class="prompt-bi">
+                                        <div class="prompt-bi-bar">
+                                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-right: auto;">Vizualizácia</span>
+                                            <button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button>
+                                            <button class="lang-tab" onclick="switchLang(this,'en')">EN</button>
+                                            <button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button>
+                                        </div>
+                                        <div class="prompt-bi-content">
+                                            <div class="prompt-bi-text active" data-lang="cz">Vytvoř jako artefakt interaktivní HTML kalkulačku partnerské marže pro Enervit. Vstup: nákupní cena, prodejní cena (MOC), počet kusů. Výstup: marže v %, zisk v Kč, roční odhad. Pěkný design, mobilní.</div>
+                                            <div class="prompt-bi-text" data-lang="en">Create as an artifact an interactive HTML partner margin calculator for Enervit. Input: purchase price, retail price (MSRP), quantity. Output: margin %, profit in CZK, annual estimate. Nice design, mobile-friendly.</div>
+                                        </div>
+                                    </div>
+                                    <div class="tip-box"><span>&#128161;</span> Artefakty sa dajú stiahnuť (ikona download) alebo skopírovať. HTML artefakty fungujú rovno v browseri — vyskúšaj tú kalkulačku!</div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- D -->
+                        <!-- D: Iterácia -->
                         <div class="task">
                             <div class="task-header" onclick="toggleTask(this)">
                                 <div class="task-num" style="background: var(--green-soft); color: var(--green);">D</div>
-                                <div class="task-label">Email drafting a komunikácia</div>
+                                <div class="task-label">Iterácia — uprav výstup krok za krokom</div>
                                 <div class="task-tag" style="background: var(--purple-soft); color: var(--purple);">cvičenie</div>
                                 <svg class="task-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                             </div>
                             <div class="task-body">
                                 <div class="task-body-inner">
-                                    <p><strong style="color: var(--text);">Úloha:</strong> Napíš prompt pre email, ktorý naozaj potrebuješ odoslať tento týždeň. Potom iteruj — požiadaj Claude o úpravy.</p>
+                                    <p>Najlepšie výsledky dostaneš <strong style="color: var(--text);">iteráciou</strong> — prvý draft uprav 2-3x cez ďalšie prompty. Tu je príklad ako vylepšiť email v 3 krokoch:</p>
                                     <div class="prompt-bi">
                                         <div class="prompt-bi-bar">
+                                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-right: auto;">Krok 1: Prvý draft</span>
                                             <button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button>
                                             <button class="lang-tab" onclick="switchLang(this,'en')">EN</button>
                                             <button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button>
                                         </div>
                                         <div class="prompt-bi-content">
-                                            <div class="prompt-bi-text active" data-lang="cz"><span class="prompt-label-inline">1. prompt:</span> Napiš follow-up email po schůzce s fitness centrem FitPark Brno. Dohodli jsme se na zkušební dodávce 20ks Enervit Isotonic. Tón přátelský, profesionální. Max 100 slov.</div>
-                                            <div class="prompt-bi-text" data-lang="en"><span class="prompt-label-inline">1. prompt:</span> Write a follow-up email after a meeting with FitPark Brno fitness center. We agreed on a trial delivery of 20x Enervit Isotonic. Friendly, professional tone. Max 100 words.</div>
+                                            <div class="prompt-bi-text active" data-lang="cz">Napiš follow-up email po schůzce s fitness centrem FitPark Brno. Dohodli jsme se na zkušební dodávce 20ks Enervit Isotonic. Tón přátelský, profesionální. Max 100 slov.</div>
+                                            <div class="prompt-bi-text" data-lang="en">Write a follow-up email after a meeting with FitPark Brno fitness center. We agreed on a trial delivery of 20x Enervit Isotonic. Friendly, professional tone. Max 100 words.</div>
                                         </div>
                                     </div>
                                     <div class="prompt-bi">
                                         <div class="prompt-bi-bar">
+                                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-right: auto;">Krok 2: Uprav</span>
                                             <button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button>
                                             <button class="lang-tab" onclick="switchLang(this,'en')">EN</button>
                                             <button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button>
                                         </div>
                                         <div class="prompt-bi-content">
-                                            <div class="prompt-bi-text active" data-lang="cz"><span class="prompt-label-inline">2. iterácia:</span> Zkrať to na 60 slov a přidej CTA s datem dodání.</div>
-                                            <div class="prompt-bi-text" data-lang="en"><span class="prompt-label-inline">2. iteration:</span> Shorten it to 60 words and add a CTA with the delivery date.</div>
+                                            <div class="prompt-bi-text active" data-lang="cz">Zkrať to na 60 slov, přidej konkrétní datum dodání (příští středa) a jasné CTA — "Potvrďte prosím objednávku odpovědí na tento email."</div>
+                                            <div class="prompt-bi-text" data-lang="en">Shorten to 60 words, add a specific delivery date (next Wednesday) and a clear CTA — "Please confirm the order by replying to this email."</div>
                                         </div>
                                     </div>
                                     <div class="prompt-bi">
                                         <div class="prompt-bi-bar">
+                                            <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-right: auto;">Krok 3: Dolaď</span>
                                             <button class="lang-tab active" onclick="switchLang(this,'cz')">CZ</button>
                                             <button class="lang-tab" onclick="switchLang(this,'en')">EN</button>
                                             <button class="copy-btn" onclick="copyPrompt(this)">Kopírovať</button>
                                         </div>
                                         <div class="prompt-bi-content">
-                                            <div class="prompt-bi-text active" data-lang="cz"><span class="prompt-label-inline">3. iterácia:</span> Změň tón na formálnější, tykání změň na vykání.</div>
-                                            <div class="prompt-bi-text" data-lang="en"><span class="prompt-label-inline">3. iteration:</span> Change the tone to more formal, switch from informal to formal address.</div>
+                                            <div class="prompt-bi-text active" data-lang="cz">Změň tón na formálnější s vykáním. Přidej P.S. s odkazem na náš katalog. A uprav předmět emailu — ať je stručný a zaujme.</div>
+                                            <div class="prompt-bi-text" data-lang="en">Change tone to more formal with formal address. Add a P.S. with a link to our catalog. And improve the email subject line — make it concise and attention-grabbing.</div>
                                         </div>
                                     </div>
-                                    <div class="tip-box"><span>&#128161;</span> Iterovanie je kľúč. Prvý draft uprav 2-3x cez ďalšie prompty.</div>
+                                    <div class="tip-box"><span>&#128161;</span> Pravidlo: Nikdy nepoužívaj prvý draft. Vždy minimálne 1 iterácia. Claude sa nezľakne — povedz mu presne čo zmeniť.</div>
                                 </div>
                             </div>
                         </div>
