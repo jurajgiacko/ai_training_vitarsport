@@ -145,9 +145,10 @@
         .timeline-item.open .timeline-chevron { transform: rotate(180deg); }
 
         .timeline-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease;
+            display: none;
+        }
+        .timeline-item.open > .timeline-body {
+            display: block;
         }
         .timeline-body-inner { padding: 0 24px 24px; }
 
@@ -191,9 +192,10 @@
         .task.open .task-chevron { transform: rotate(180deg); }
 
         .task-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
+            display: none;
+        }
+        .task.open > .task-body {
+            display: block;
         }
         .task-body-inner {
             padding: 0 18px 18px;
@@ -1210,38 +1212,10 @@
 
 <script>
 function toggleTimeline(header) {
-    const item = header.closest('.timeline-item');
-    const body = item.querySelector('.timeline-body');
-    const isOpen = item.classList.contains('open');
-
-    if (isOpen) {
-        body.style.maxHeight = '0';
-        item.classList.remove('open');
-    } else {
-        body.style.maxHeight = body.scrollHeight + 'px';
-        item.classList.add('open');
-    }
+    header.closest('.timeline-item').classList.toggle('open');
 }
-
 function toggleTask(header) {
-    const task = header.closest('.task');
-    const body = task.querySelector('.task-body');
-    const isOpen = task.classList.contains('open');
-    const timelineBody = task.closest('.timeline-body');
-
-    if (isOpen) {
-        body.style.maxHeight = '0';
-        task.classList.remove('open');
-    } else {
-        body.style.maxHeight = body.scrollHeight + 'px';
-        task.classList.add('open');
-    }
-
-    setTimeout(() => {
-        if (timelineBody) {
-            timelineBody.style.maxHeight = timelineBody.scrollHeight + 'px';
-        }
-    }, 50);
+    header.closest('.task').classList.toggle('open');
 }
 </script>
 
